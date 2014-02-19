@@ -62,6 +62,6 @@ Division of Labor:
 Front-End:
     Kat (Console, VisualOutput)
 Back-End:
-    Richard(Parser, Error Encoding)
+    Richard()
     Jeremiah()
 	David()
