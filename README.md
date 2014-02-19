@@ -1,22 +1,21 @@
 slogo
 =====
 
-Empty repository for SLogo project
-
 
 interface Command
 	execute()
-LoopCommand
-MoveCommand
-RotateCommand
-SetPenStateCommand
-ClearScreenCommand
+    LoopCommand
+    MoveCommand
+    RotateCommand
+    SetPenStateCommand
+    ClearScreenCommand
 	
 
 
 Parser
 	creates command objects
 Error Message Generations
+    
 
 
 ConmmandHistory
@@ -47,21 +46,22 @@ VisualOutput (extends Jgame)
 	all built in jgame methods?
 
 
-API:
-
-runProgram(text)
-	sends all text to the parser, and executes the program.
-
-resetScreen()
-
-restoreCommand( )
-	put the old text back into the console
-
-stop()
-
-initiate()
-
-move()
-	
-rotate()
-	
+API - 
+    runProgram(text)
+        sends all text to the parser, and executes the program.
+    resetScreen()
+    restoreCommand( )
+        put the old text back into the console
+    stop()
+    initiate()
+    move()
+    rotate()
+    
+=====
+Division of Labor:
+Front-End:
+    Kat (Console, VisualOutput)
+Back-End:
+    Richard(Parser, Error Encoding)
+    Jeremiah()
+	David()
