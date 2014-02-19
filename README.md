@@ -4,6 +4,7 @@ slogo
 
 interface Command
 	execute()
+    Example classes that would implement the Command interface:
     LoopCommand
     MoveCommand
     RotateCommand
