@@ -60,8 +60,8 @@ API -
 =====
 Division of Labor:
 Front-End:
-    Kat (Console, VisualOutput)
+    Kat (Console, VisualOutput, VisualObjects)
 Back-End:
-    Richard()
-    Jeremiah()
-	David()
+    David and Richard (Parser, Error Checker)
+    Jeremiah(Command/Command Execution)
+	
