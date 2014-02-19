@@ -58,6 +58,31 @@ API -
     rotate()
     
 =====
+Example Code:
+
+repeat 180 [fd 1 rt 2] - the turtle will have 180 iterations;
+    for each iteration:
+        it moves forward one step
+        it rotates by 2 degrees
+        
+repeat 10 [pd fd 4 pu fd 4] - the turtle will have 10 iterations;
+    for each iteration:
+        the pen goes down
+        the turtle goes forward 4 steps
+        the pen goes up
+        the turtle goes forward 4 steps
+        
+The program will need to be able to parse the following:
+    fd
+    pu, pd
+    rt
+    methods - calling and recognition
+    setxy
+    setting of global variables
+
+
+=====
+
 Division of Labor:
 Front-End:
     Kat (Console, VisualOutput, VisualObjects)
