@@ -1,20 +1,20 @@
 slogo
 =====
 
-Empty repository for SLogo project
-
 
 interface Command
 	execute()
-LoopCommand
-MoveCommand
-RotateCommand
-SetPenStateCommand
-ClearScreenCommand
+    Example classes that would implement the Command interface:
+    LoopCommand
+    MoveCommand
+    RotateCommand
+    SetPenStateCommand
+    ClearScreenCommand
 	
 Parser
 	creates command objects
 Error Message Generations
+    
 
 
 ConmmandHistory
@@ -43,7 +43,6 @@ Console
 VisualOutput (extends Jgame)
 	resetScreen()
 	all built in jgame methods?
-
 
 API:
 
@@ -75,4 +74,11 @@ void rotate(double angle)
 
 void moveTo(double x, double y)
 >	Sets the position of the turtle on the display.
-	
+    
+=====
+Division of Labor:
+Front-End:
+    Kat (Console, VisualOutput, VisualObjects)
+Back-End:
+    David and Richard (Parser, Error Checker)
+    Jeremiah(Command/Command Execution)
