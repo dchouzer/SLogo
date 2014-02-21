@@ -18,7 +18,6 @@ Parser
 Error Message Generations
     
 
-
 ConmmandHistory
 	addCommand()
 	getCommand()
@@ -97,6 +96,7 @@ The program will need to be able to parse the following:
     fd
     pu, pd
     rt
+    loops
     methods - calling and recognition
     setxy
     setting of global variables
@@ -110,4 +110,21 @@ Front-End:
 Back-End:
     David and Richard (Parser, Error Checker)
     Jeremiah(Command/Command Execution)
+
+Description of parts:
+
+Command and Command Execution
+	The Command interface defines a contract for all commands with one method to execute
+	the command. Implementations of this interface will be specific commands, each
+	corresponding to the text commands that the parser will recognize. Once the parser
+	has generated a collection of Command objects, they will be passed to the command 
+	evaluator, which will run through all commands in the list. Some commands, such as
+	those representing loops and defined methods, will hold a reference to a list of
+	other commands, which could itself hold other nested structures as well. Simple 
+	commands such as move and rotate will need to be created with only a parameter value. 
+	The command evaluator may also store lists of commands as "programs" so the parser 
+	won't need to re-parse recent programs - they can execute straight from the Command 
+	objects. Separating the command implementation from the parsing allows for greater
+	flexibility between parsing commands and executing them - so the parser doesn't
+	need to know how commands are executed.
 </pre>    
