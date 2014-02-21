@@ -133,12 +133,19 @@ repeat 10 [pd fd 4 pu fd 4] - the turtle will have 10 iterations;
         the turtle goes forward 4 steps
         
 The program will need to be able to parse the following:
-    fd
-    pu, pd
-    rt
-    methods - calling and recognition
+    fd, forward
+    pu, penup
+    pd, pendown
+    rt, right
+    lt, left
+    to (for methods)
     setxy
-    setting of global variables
+    :____ (for variables - variable name goes in blank)
+        everytime we see this, we should automatically note
+        that we have a variable being taken in for our command
+        note also that we should be able to take multiple paremeters in methods
+    need to figure out how the parser can go back and grab the method...
+        this means that we need to have a log of all strings within the text input
 
 
 =====
