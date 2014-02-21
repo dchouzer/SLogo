@@ -26,7 +26,7 @@ Error Message Generations
         into an error message that the API can understand to show a error dialog
         message box.
         
-        Otherwise, if all of the messages are valid, the parser is enable to turn
+        Otherwise, if all of the messages are valid, the parser is enabled to turn
         the text inputs into commands.
         
 Error Methods:
@@ -37,8 +37,13 @@ Error Methods:
     private void checkStrings(List<Strings>)
         runs through a list of stringsto see if they are valid strings
     
-    private void changeValidity()
-        can be called by parser to see if the parser can proceed to make messages
+    private void setValidityFalse()
+        changes the status of a boolean "valid" that determines whether parser can
+        proceed with command generation
+        
+    private void setValidityTrue()
+        changes the status of a boolean "valid" that determines whether parser can
+        proceed with command generation 
         
     private void generateError() - will maybe need to split this into different types of errors
         creates a specific error based on the type of problem within the code
@@ -48,7 +53,12 @@ Error Methods:
     
 
 
-ConmmandHistory
+CommandControl
+
+The command control should have some collection data structure that stores
+all of the commands and grabs them from the Parser.
+
+It will proceed through these commands and then send them to the objects.
 	addCommand()
 	getCommand()
 	delete()
