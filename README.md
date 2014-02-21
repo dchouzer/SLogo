@@ -14,8 +14,37 @@ Example classes that would implement the Command interface:
 	CallMethodCommand
 	
 Parser
+    aggregates text inputs into a list of strings to be parsed
 	creates command objects
+    
+    
 Error Message Generations
+    The error message generator will only have two interactions:
+    1) Parser
+        The parser will send the possible text inputs from the console to the
+        error checker. If there are errors in the text, the errors must be codified
+        into an error message that the API can understand to show a error dialog
+        message box.
+        
+        Otherwise, if all of the messages are valid, the parser is enable to turn
+        the text inputs into commands.
+        
+Error Methods:
+    
+    public void storeStrings(List<Strings>)
+        takes the strings from parser and stores them
+    
+    private void checkStrings(List<Strings>)
+        runs through a list of stringsto see if they are valid strings
+    
+    private void changeValidity()
+        can be called by parser to see if the parser can proceed to make messages
+        
+    private void generateError() - will maybe need to split this into different types of errors
+        creates a specific error based on the type of problem within the code
+    
+    private void sendErrorToConsole()
+        tells the API to make the console show an error message
     
 
 
