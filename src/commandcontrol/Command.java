@@ -1,9 +1,9 @@
 package commandcontrol;
 
-public class Command {
+import java.util.*;
+
+public interface Command {
 	
-	public void execute() {
-		
-	}
+	public int execute();
 	
 }
