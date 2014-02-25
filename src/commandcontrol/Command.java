@@ -1,9 +1,15 @@
 package commandcontrol;
 
-public class Command {
+import java.util.*;
+
+public abstract class Command {
 	
-	public void execute() {
-		
+	private List<Command> mySubCommands;
+	
+	public Command (List<Command> l){
+		mySubCommands = l;
 	}
+	
+	public abstract void execute();
 	
 }
