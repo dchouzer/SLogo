@@ -2,9 +2,9 @@ package commandcontrol;
 
 import java.util.List;
 
-public class RotateCommand extends OneParamCommands{
+public class SetHeadingCommand extends OneParamCommands {
 
-	public RotateCommand(List<Command> l) {
+	public SetHeadingCommand(List<Command> l) {
 		super(l);
 	}
 
@@ -12,5 +12,5 @@ public class RotateCommand extends OneParamCommands{
 	public int execute() {
 		return 0;
 	}
-	
+
 }
