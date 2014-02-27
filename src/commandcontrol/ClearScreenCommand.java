@@ -7,9 +7,9 @@ public class ClearScreenCommand extends ZeroParamCommands {
 	}
 
 	@Override
-	public int execute() {
+	public double execute() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 0.0;
 	}
 
 }
