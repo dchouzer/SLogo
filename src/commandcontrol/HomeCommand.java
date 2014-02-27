@@ -1,15 +1,12 @@
 package commandcontrol;
 
-public class HomeCommand extends ZeroParamCommands {
+import controller.Controller;
 
-	public HomeCommand() {
-		// TODO Auto-generated constructor stub
-	}
+public class HomeCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return Controller.setXY(0, 0);
 	}
 
 }

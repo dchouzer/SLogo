@@ -1,15 +1,12 @@
 package commandcontrol;
 
-public class XCorCommand extends ZeroParamCommands {
+import controller.Controller;
 
-	public XCorCommand() {
-		// TODO Auto-generated constructor stub
-	}
+public class XCorCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return Controller.xcor();
 	}
 
 }
