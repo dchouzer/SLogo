@@ -154,7 +154,7 @@ public class Parser {
 	
 	private List<Command> parse(String[] commandStrings) throws Exception {
 		List<Command> commandList = new ArrayList<Command>();
-		while(cursor >= commandStrings.length) {
+		while(cursor < commandStrings.length) {
 			commandList.add(recursiveParse(commandStrings));
 		}
 		return commandList;
