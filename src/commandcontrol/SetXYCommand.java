@@ -9,8 +9,8 @@ public class SetXYCommand extends MoreThanOneParamCommands{
 	}
 
 	@Override
-	public int execute() {
-		return 0;
+	public double execute() {
+		return 0.0;
 	}
 
 }

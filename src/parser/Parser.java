@@ -1,4 +1,5 @@
 package parser;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -94,7 +95,7 @@ public class Parser {
 	
 	
 	
-	public void parseProgram (String program) {
+	public void parseProgram (String program) throws Exception {
 		stringToParse = program;
 		myStringArray = stringToParse.split("\\s+");
 		cursor = -1;
@@ -109,7 +110,7 @@ public class Parser {
 	 */
 	//Can use this to run through the string and store
 	
-	private Command recursiveParse(String[] commandStrings) {
+	private Command recursiveParse(String[] commandStrings) throws Exception {
 		Command command = null;
 		
 		cursor++;
@@ -119,7 +120,7 @@ public class Parser {
 		}
 		
 		if(isNumber(commandStrings[cursor])) {
-			command = new NumberCommand(Double.parseString(commandStrings[cursor]));
+			command = new NumberCommand(Double.parseDouble(commandStrings[cursor]));
 		}
 		
 		if(numParams(commandStrings[cursor]) == 0) {
@@ -141,7 +142,7 @@ public class Parser {
 		return command;
 	}
 	
-	private List<Command> parse(String[] commandStrings) {
+	private List<Command> parse(String[] commandStrings) throws Exception {
 		List<Command> commandList = new ArrayList<Command>();
 		while(cursor >= commandStrings.length) {
 			commandList.add(recursiveParse(commandStrings));

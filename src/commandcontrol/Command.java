@@ -4,6 +4,6 @@ import java.util.*;
 
 public interface Command {
 	
-	public int execute();
+	public double execute();
 	
 }

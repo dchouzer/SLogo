@@ -7,9 +7,9 @@ public class PenUpCommand extends ZeroParamCommands {
 	}
 
 	@Override
-	public int execute() {
+	public double execute() {
 		//Change pen status to up
-		return 0;
+		return 1.0;
 	}
 
 }
