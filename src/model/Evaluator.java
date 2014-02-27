@@ -7,5 +7,11 @@ import commandcontrol.*;
 public class Evaluator {
 
 	List<Command> commandListToEvaluate;
+	
+	public void execute(List<Command> list) {
+		for (Command c : list) {
+			c.execute();
+		}
+	}
 
 }
