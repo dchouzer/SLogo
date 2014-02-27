@@ -1,5 +1,7 @@
 package commandcontrol;
 
+import controller.Controller;
+
 public class CheckTurtleShowingCommand extends ZeroParamCommands {
 
 	public CheckTurtleShowingCommand() {
@@ -8,8 +10,7 @@ public class CheckTurtleShowingCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return Controller.getTurtleVisibility();
 	}
 
 }

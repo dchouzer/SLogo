@@ -1,14 +1,12 @@
 package commandcontrol;
 
+import controller.Controller;
+
 public class PenDownCommand extends ZeroParamCommands {
-	
-	public PenDownCommand(){
-	}
-	
+
 	@Override
 	public double execute() {
-		//change pen status to down
-		return 0.0;
+		return Controller.changePenVisibility(1);
 	}
 
 }

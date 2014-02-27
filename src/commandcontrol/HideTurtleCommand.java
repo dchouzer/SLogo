@@ -1,15 +1,12 @@
 package commandcontrol;
 
-public class HideTurtleCommand extends ZeroParamCommands {
+import controller.Controller;
 
-	public HideTurtleCommand() {
-		// TODO Auto-generated constructor stub
-	}
+public class HideTurtleCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return Controller.changeTurtleVisibility(1);
 	}
 
 }
