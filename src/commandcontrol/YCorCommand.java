@@ -1,15 +1,12 @@
 package commandcontrol;
 
-public class YCorCommand extends ZeroParamCommands {
+import controller.Controller;
 
-	public YCorCommand() {
-		// TODO Auto-generated constructor stub
-	}
+public class YCorCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return Controller.ycor();
 	}
 
 }
