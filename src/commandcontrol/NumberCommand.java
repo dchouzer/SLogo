@@ -4,14 +4,14 @@ import java.util.List;
 
 public class NumberCommand implements Command{
 	
-	private int numberToReturn;
+	private double numberToReturn;
 	
-	public NumberCommand(int value) {
-		numberToReturn = value;	
+	public NumberCommand(double d) {
+		numberToReturn = d;	
 	}
 
 	@Override
-	public int execute() {
+	public double execute() {
 		return numberToReturn;
 	}
 

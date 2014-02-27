@@ -9,8 +9,8 @@ public class RotateLeftCommand extends OneParamCommands{
 	}
 
 	@Override
-	public int execute() {
-		return 0;
+	public double execute() {
+		return 0.0;
 	}
 	
 }
