@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class RemainderCommand extends MoreThanOneParamCommands {
+public class RemainderCommand extends MoreThanOneParamCommand {
 
 	public RemainderCommand(List<Command> l) {
 		super(l);

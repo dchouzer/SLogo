@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class ProductCommand extends MoreThanOneParamCommands {
+public class ProductCommand extends MoreThanOneParamCommand {
 
 	public ProductCommand(List<Command> l) {
 		super(l);

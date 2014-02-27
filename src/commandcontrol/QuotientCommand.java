@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class QuotientCommand extends MoreThanOneParamCommands {
+public class QuotientCommand extends MoreThanOneParamCommand {
 
 	public QuotientCommand(List<Command> l) {
 		super(l);

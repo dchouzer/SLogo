@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class SumCommand extends MoreThanOneParamCommands {
+public class SumCommand extends MoreThanOneParamCommand {
 
 	public SumCommand(List<Command> l) {
 		super(l);

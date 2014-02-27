@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class PowCommand extends MoreThanOneParamCommands {
+public class PowCommand extends MoreThanOneParamCommand {
 
 	public PowCommand(List<Command> l) {
 		super(null);

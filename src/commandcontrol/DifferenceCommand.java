@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class DifferenceCommand extends MoreThanOneParamCommands {
+public class DifferenceCommand extends MoreThanOneParamCommand {
 
 	public DifferenceCommand(List<Command> l) {
 		super(l);
