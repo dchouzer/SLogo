@@ -1,5 +1,4 @@
 package commandcontrol;
-
 import java.util.List;
 
 public class SetXYCommand extends MoreThanOneParamCommands{
