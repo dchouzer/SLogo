@@ -121,32 +121,34 @@ public class Parser {
 		
 		cursor++;
 		
+		String commandString = commandStrings[cursor];
+		
 		if(cursor >= commandStrings.length) {
 			return null;
 		}
 		
-		if(isNumber(commandStrings[cursor])) {
+		if(isNumber(commandString)) {
 			command = new NumberCommand(Double.parseDouble(commandStrings[cursor]));
 		}
 		
-		if(numParams(commandStrings[cursor]) == 0) {
+		if(numParams(commandString) == 0) {
 			command = (Command) Class.forName(commandMap.get(commandStrings[cursor])).getConstructor().newInstance();
 		}
 		
-		if(numParams(commandStrings[cursor]) == 1) {
+		if(numParams(commandString) == 1) {
 			Command theCommand = recursiveParse(commandStrings);
-			command = (Command) Class.forName(commandMap.get(commandStrings[cursor])).getConstructor(Command.class).newInstance(theCommand);
+			command = (Command) Class.forName(commandMap.get(commandString)).getConstructor(Command.class).newInstance(theCommand);
 		}
 		
-		if(numParams(commandStrings[cursor]) == 2) {
+		if(numParams(commandString) == 2) {
 			List<Command> commandList = new ArrayList<Command>();
 			commandList.add(recursiveParse(commandStrings));
 			commandList.add(recursiveParse(commandStrings));
-			command = (Command) Class.forName(commandMap.get(commandStrings[cursor])).getConstructor(List.class).newInstance(commandList);
+			command = (Command) Class.forName(commandMap.get(commandString)).getConstructor(List.class).newInstance(commandList);
 		}
 		
-		if(isControlStructure(commandStrings[cursor])) {
-			//do loop or if thingy
+		if(isControlStructure(commandString)) {
+			Command c = recursiveParse(commandStrings);
 		}
 		
 		return command;
@@ -183,6 +185,10 @@ public class Parser {
 		if(commandString == "repeat")
 			return true;
 		return false;
+	}
+	
+	private String[] getControlBlock(String[] commandStrings) {
+		return null;
 	}
 	
 }
