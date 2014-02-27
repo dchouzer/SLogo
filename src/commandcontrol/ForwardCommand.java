@@ -1,17 +1,15 @@
 package commandcontrol;
 
-import java.util.List;
+import controller.Controller;
 
 public class ForwardCommand extends OneParamCommands {
 	
-	private double myAmount;
-	
-	public ForwardCommand(List<Command> l) {
-		super(l);
+	public ForwardCommand(Command c) {
+		super(c);
 	}
 	
 	public double execute(){
-		//move turtle forward
-		return myAmount;
+		myAmount = myInput.execute();
+		return Controller.move(myAmount);
 	}
 }

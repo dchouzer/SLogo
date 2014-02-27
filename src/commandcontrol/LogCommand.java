@@ -2,17 +2,19 @@ package commandcontrol;
 
 import java.util.List;
 
+import controller.Controller;
+
 public class LogCommand extends OneParamCommands {
 
-	public LogCommand(List<Command> l) {
-		super(l);
+	public LogCommand(Command c) {
+		super(c);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		myAmount = myInput.execute();
+		return Controller.log(myAmount);
 	}
 
 }

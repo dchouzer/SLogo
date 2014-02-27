@@ -2,15 +2,18 @@ package commandcontrol;
 
 import java.util.List;
 
+import controller.Controller;
+
 public class SetHeadingCommand extends OneParamCommands {
 
-	public SetHeadingCommand(List<Command> l) {
-		super(l);
+	public SetHeadingCommand(Command c) {
+		super(c);
 	}
 
 	@Override
 	public double execute() {
-		return 0.0;
+		myAmount = myInput.execute();
+		return Controller.setHeading(myAmount);
 	}
 
 }
