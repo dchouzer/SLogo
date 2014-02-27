@@ -90,19 +90,25 @@ public class Parser {
 		numParamMap.put("notequal?", 2);
 		numParamMap.put("notequalp", 2);
 		numParamMap.put("and", 2);
-		numParamMap.put("or", 2);	
+		numParamMap.put("or", 2);
+		
+		addCommandMapping(new String[] {"fd","forward"}, "command.ForwardCommand");
+		addCommandMapping(new String[] {"bk","back"}, "command.BackCommand");
+		addCommandMapping(new String[] {"lt","left"}, "command.RotateLeftCommand");
+		addCommandMapping(new String[] {"rt","right"}, "command.RotateRightCommand");
+		addCommandMapping(new String[] {"sum","+"}, "command.SumCommand");
 	}
 	
 	
 	
 	public void parseProgram (String program) throws Exception {
-		stringToParse = program;
+		stringToParse = program.toLowerCase();
 		myStringArray = stringToParse.split("\\s+");
 		cursor = -1;
 		myCommandList = parse(myStringArray);
 	}
 	
-	/*This method should run through the array
+	/*This method should run through the  array
 	 * to check what kind of command each box is -
 	 * after it examines the type of command that
 	 * is there, it should look at a number of corresponding
@@ -139,6 +145,10 @@ public class Parser {
 			command = (Command) Class.forName(commandMap.get(commandStrings[cursor])).getConstructor(List.class).newInstance(commandList);
 		}
 		
+		if(isControlStructure(commandStrings[cursor])) {
+			//do loop or if thingy
+		}
+		
 		return command;
 	}
 	
@@ -161,6 +171,18 @@ public class Parser {
 	
 	private int numParams(String commandString) {
 		return numParamMap.get(commandString);
+	}
+	
+	private void addCommandMapping(String[] commandStrings, String value) {
+		for(String s : commandStrings) {
+			commandMap.put(s, value);
+		}
+	}
+	
+	private boolean isControlStructure(String commandString) {
+		if(commandString == "repeat")
+			return true;
+		return false;
 	}
 	
 }
