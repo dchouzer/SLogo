@@ -2,10 +2,10 @@ package commandcontrol;
 
 import java.util.List;
 
-public class PowCommand extends OneParamCommands {
+public class PowCommand extends MoreThanOneParamCommands {
 
 	public PowCommand(List<Command> l) {
-		super(l);
+		super(null);
 		// TODO Auto-generated constructor stub
 	}
 

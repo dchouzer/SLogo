@@ -1,18 +1,16 @@
 package commandcontrol;
 
-import java.util.List;
+import controller.Controller;
 
 public class BackCommand extends OneParamCommands {
 	
-	private double myAmount;
-	
-	public BackCommand(List<Command> l) {
-		super(l);
+	public BackCommand(Command c) {
+		super(c);
 	}
 	
 	public double execute(){
-		//move turtle backward
-		return myAmount;
+		myAmount = -(myInput.execute());
+		return Controller.move(myAmount);
 	}
 }
 
