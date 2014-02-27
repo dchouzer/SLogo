@@ -14,18 +14,18 @@ public class Parser {
 	String[] myStringArray;
 	List<Command> myCommandList;
 	int cursor;
-	Set<String> zeroParamSet;
-	Set<String> oneParamSet;
-	Set<String> twoParamSet;
+//	Set<String> zeroParamSet;
+//	Set<String> oneParamSet;
+//	Set<String> twoParamSet;
 	Map<String, Integer> numParamMap;
 	Map<String, String> commandMap;
 	
 	public Parser() {
 		numParamMap = new HashMap<String, Integer>();
 		commandMap = new HashMap<String, String>();
-		zeroParamSet = new HashSet<String>();
-		oneParamSet = new HashSet<String>();
-		twoParamSet = new HashSet<String>();
+//		zeroParamSet = new HashSet<String>();
+//		oneParamSet = new HashSet<String>();
+//		twoParamSet = new HashSet<String>();
 		//TODO: fill in map of commands
 		//One parameter commands
 		numParamMap.put("fd", 1);
@@ -89,10 +89,7 @@ public class Parser {
 		numParamMap.put("notequal?", 2);
 		numParamMap.put("notequalp", 2);
 		numParamMap.put("and", 2);
-		numParamMap.put("or", 2);
-		
-		
-		
+		numParamMap.put("or", 2);	
 	}
 	
 	
