@@ -1,8 +1,9 @@
 package model;
 
+import jgame.JGImage;
 import jgame.JGObject;
 
-public class Turtle extends JGObject {
+public class Turtle extends JGObject{
 
 	public double myAngle;
 

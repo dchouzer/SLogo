@@ -1,12 +1,17 @@
 package viewer;
+import model.Turtle;
 import jgame.platform.JGEngine;
 
 public class SLogoView extends JGEngine {
 	
+	private String image;
+	
 	public SLogoView(){
     int height = 480;
-    double aspect = 16.0 / 9.0;
-    initEngineComponent((int) (height * aspect), height);
+    int width = 480;
+    initEngineComponent(width, height);
+	defineMedia("mygame.tbl");
+    Turtle firstTurtle = new Turtle(10, 50 ,0, getImage());
 	}
 	
 	
@@ -21,5 +26,12 @@ public class SLogoView extends JGEngine {
 	public void initGame() {
 		setFrameRate(30,1);
 	}
-
+	
+	
+	
+	public String getImage(){
+		String image;
+		image = "turtle";
+		return image;
+	}
 }

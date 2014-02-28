@@ -13,24 +13,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-/**
- * Demo program to show many of the awt events that can be generated.
- * 
- * Illustrates XXXListeners for consuming several types of events including
- * semantic events (e.g., ActionEvent) and low-level events (e.g., FocusEvent)
- * 
- * See this tutorial for help on how to use the variety of components:
- *   http://docs.oracle.com/javase/tutorial/uiswing/examples/components/
- * 
- * @author Owen Astrachan
- * @author Robert C. Duvall
- */
-@SuppressWarnings("serial")
 public class Viewer extends JFrame {
-   
-	
-	
-	private static final String USER_DIR = "user.dir";
+  
 
 
 	public Viewer()
@@ -39,12 +23,12 @@ public class Viewer extends JFrame {
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			JTextArea myCommands = new JTextArea(20,20);
 			JTextArea myOutput = new JTextArea(20,20);
-			TextView textView = new TextView(new JScrollPane(), new JScrollPane(), myCommands, myOutput);
+			SLogoView myGame = new SLogoView(); 
+			TextView textView = new TextView(myCommands, myOutput);
+	        UpperView myUpperView = new UpperView(textView, myGame);
 	        TextInput myTextInput = new TextInput();
-	        SLogoView myGame = new SLogoView(); 
-            getContentPane().add(textView, BorderLayout.WEST);
-	        getContentPane().add(myTextInput, BorderLayout.SOUTH);
-	        getContentPane().add(myGame, BorderLayout.CENTER);
+	        FullView fullView = new FullView(myTextInput, myUpperView);
+	        getContentPane().add(fullView, BorderLayout.CENTER);
 	        setJMenuBar(createMenuBar());
 	        pack();
 	        setVisible(true);

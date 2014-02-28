@@ -1,5 +1,7 @@
 package viewer;
 
+import java.awt.event.*;
+
 import javax.swing.*;
 
 public class TextInput extends JPanel{
