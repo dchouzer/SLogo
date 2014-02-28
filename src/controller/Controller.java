@@ -1,8 +1,9 @@
 package controller;
+import model.*;
 
 public class Controller {
 	
-	//private Turtle myTurtle;
+	private Turtle myTurtle;
 	
 	public static double move(double dist){
 		return dist;
