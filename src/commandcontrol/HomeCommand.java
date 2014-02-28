@@ -1,12 +1,12 @@
 package commandcontrol;
 
-import controller.Controller;
+import controller.TurtleController;
 
 public class HomeCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		return Controller.setXY(0, 0);
+		return TurtleController.setXY(0, 0);
 	}
 
 }

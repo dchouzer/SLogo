@@ -1,6 +1,6 @@
 package commandcontrol;
 
-import controller.Controller;
+import controller.TurtleController;
 
 public class CheckTurtleShowingCommand extends ZeroParamCommands {
 
@@ -10,7 +10,7 @@ public class CheckTurtleShowingCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		return Controller.getTurtleVisibility();
+		return TurtleController.getTurtleVisibility();
 	}
 
 }

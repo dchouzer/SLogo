@@ -1,12 +1,12 @@
 package commandcontrol;
 
-import controller.Controller;
+import controller.TurtleController;
 
 public class PenUpCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		return Controller.changePenVisibility(0);
+		return TurtleController.changePenVisibility(0);
 	}
 
 }

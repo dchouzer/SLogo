@@ -2,7 +2,7 @@ package commandcontrol;
 
 import java.util.List;
 
-import controller.Controller;
+import controller.TurtleController;
 
 public class SetHeadingCommand extends OneParamCommands {
 
@@ -13,7 +13,7 @@ public class SetHeadingCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.setHeading(myAmount);
+		return TurtleController.setHeading(myAmount);
 	}
 
 }

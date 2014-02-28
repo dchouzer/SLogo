@@ -2,7 +2,7 @@ package commandcontrol;
 
 import java.util.List;
 
-import controller.Controller;
+import controller.TurtleController;
 
 public class SumCommand extends MoreThanOneParamCommand {
 
@@ -12,7 +12,7 @@ public class SumCommand extends MoreThanOneParamCommand {
 
 	@Override
 	public double execute() {
-		return Controller.sum(mySubCommands.get(0).execute(), mySubCommands.get(1).execute());
+		return TurtleController.sum(mySubCommands.get(0).execute(), mySubCommands.get(1).execute());
 	}
 
 }

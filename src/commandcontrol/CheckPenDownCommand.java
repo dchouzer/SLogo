@@ -1,12 +1,12 @@
 package commandcontrol;
 
-import controller.Controller;
+import controller.TurtleController;
 
 public class CheckPenDownCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		return Controller.getPenVisibility();
+		return TurtleController.getPenVisibility();
 	}
 
 }
