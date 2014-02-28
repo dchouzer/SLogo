@@ -2,17 +2,17 @@ package commandcontrol;
 
 import java.util.List;
 
-public class DifferenceCommand extends MoreThanOneParamCommands {
+import controller.Controller;
+
+public class DifferenceCommand extends MoreThanOneParamCommand {
 
 	public DifferenceCommand(List<Command> l) {
 		super(l);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return Controller.sum(mySubCommands.get(0).execute(), -(mySubCommands.get(1).execute()));
 	}
 
 }

@@ -2,7 +2,9 @@ package commandcontrol;
 
 import java.util.List;
 
-public class QuotientCommand extends MoreThanOneParamCommands {
+import controller.Controller;
+
+public class QuotientCommand extends MoreThanOneParamCommand {
 
 	public QuotientCommand(List<Command> l) {
 		super(l);
@@ -11,8 +13,7 @@ public class QuotientCommand extends MoreThanOneParamCommands {
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return Controller.multiply(mySubCommands.get(0).execute(), 1.0/mySubCommands.get(1).execute());
 	}
 
 }

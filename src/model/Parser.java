@@ -1,13 +1,14 @@
 package model;
-import java.lang.reflect.InvocationTargetException;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.Stack;
 
-import commandcontrol.*;
+import commandcontrol.Command;
+import commandcontrol.NumberCommand;
 
 public class Parser {
 
@@ -90,19 +91,28 @@ public class Parser {
 		numParamMap.put("notequal?", 2);
 		numParamMap.put("notequalp", 2);
 		numParamMap.put("and", 2);
-		numParamMap.put("or", 2);	
+		numParamMap.put("or", 2);
+		
+		String packname = "commandcontrol";
+		
+		addCommandMapping(new String[] {"fd","forward"}, packname + ".ForwardCommand");
+		addCommandMapping(new String[] {"bk","back"}, packname + ".BackCommand");
+		addCommandMapping(new String[] {"lt","left"}, packname + ".RotateLeftCommand");
+		addCommandMapping(new String[] {"rt","right"}, packname + ".RotateRightCommand");
+		addCommandMapping(new String[] {"sum","+"},  packname +".SumCommand");
+		addCommandMapping(new String[] {"repeat"},  packname +".LoopCommand");
 	}
 	
 	
 	
 	public void parseProgram (String program) throws Exception {
-		stringToParse = program;
+		stringToParse = program.toLowerCase();
 		myStringArray = stringToParse.split("\\s+");
 		cursor = -1;
 		myCommandList = parse(myStringArray);
 	}
 	
-	/*This method should run through the array
+	/*This method should run through the  array
 	 * to check what kind of command each box is -
 	 * after it examines the type of command that
 	 * is there, it should look at a number of corresponding
@@ -110,42 +120,53 @@ public class Parser {
 	 */
 	//Can use this to run through the string and store
 	
-	private Command recursiveParse(String[] commandStrings) throws Exception {
-		Command command = null;
-		
+	private Command recursiveParse(String[] commandStrings) throws Exception {	
 		cursor++;
 		
 		if(cursor >= commandStrings.length) {
 			return null;
 		}
 		
-		if(isNumber(commandStrings[cursor])) {
-			command = new NumberCommand(Double.parseDouble(commandStrings[cursor]));
+		String commandString = commandStrings[cursor];
+		
+		if(isNumber(commandString)) {
+			return new NumberCommand(Double.parseDouble(commandStrings[cursor]));
 		}
 		
-		if(numParams(commandStrings[cursor]) == 0) {
-			command = (Command) Class.forName(commandMap.get(commandStrings[cursor])).getConstructor().newInstance();
+		if(numParams(commandString) == 0) {
+			return (Command) Class.forName(commandMap.get(commandStrings[cursor])).getConstructor().newInstance();
 		}
 		
-		if(numParams(commandStrings[cursor]) == 1) {
+		if(numParams(commandString) == 1) {
 			Command theCommand = recursiveParse(commandStrings);
-			command = (Command) Class.forName(commandMap.get(commandStrings[cursor])).getConstructor(Command.class).newInstance(theCommand);
+			return (Command) Class.forName(commandMap.get(commandString)).getConstructor(Command.class).newInstance(theCommand);
 		}
 		
-		if(numParams(commandStrings[cursor]) == 2) {
+		if(numParams(commandString) == 2) {
 			List<Command> commandList = new ArrayList<Command>();
 			commandList.add(recursiveParse(commandStrings));
 			commandList.add(recursiveParse(commandStrings));
-			command = (Command) Class.forName(commandMap.get(commandStrings[cursor])).getConstructor(List.class).newInstance(commandList);
+			return (Command) Class.forName(commandMap.get(commandString)).getConstructor(List.class).newInstance(commandList);
 		}
 		
-		return command;
+		if(isControlStructure(commandString)) {
+			Command c = recursiveParse(commandStrings);
+			cursor++;
+			List<Command> commandBlock = parse(getControlBlock(commandStrings));
+			cursor++; //advance to the closing bracket
+			return (Command) Class.forName(commandMap.get(commandString)).
+					getConstructor(Command.class, List.class).newInstance(c, commandBlock);
+		}
+		
+		return null;
 	}
 	
 	private List<Command> parse(String[] commandStrings) throws Exception {
 		List<Command> commandList = new ArrayList<Command>();
-		while(cursor >= commandStrings.length) {
-			commandList.add(recursiveParse(commandStrings));
+		while(cursor <= commandStrings.length - 1) {
+			Command c = recursiveParse(commandStrings);
+			if(c != null)
+				commandList.add(c);
 		}
 		return commandList;
 	}
@@ -160,7 +181,44 @@ public class Parser {
 	}
 	
 	private int numParams(String commandString) {
+		if(!numParamMap.containsKey(commandString)) {
+			return -1;
+		}
 		return numParamMap.get(commandString);
+	}
+	
+	private void addCommandMapping(String[] commandStrings, String value) {
+		for(String s : commandStrings) {
+			commandMap.put(s, value);
+		}
+	}
+	
+	private boolean isControlStructure(String commandString) {
+		if(commandString == "repeat")
+			return true;
+		return false;
+	}
+	
+	private String[] getControlBlock(String[] commandStrings) {
+		Stack<String> stack = new Stack<String>();
+		int i = cursor;
+		for(String s : commandStrings) {
+			if(s.equals("[")) {
+				stack.push(s);
+			}
+			if(s.equals("]")) {
+				if(!s.isEmpty()) {
+					stack.pop();
+					if(s.isEmpty()) {
+						break;
+					}
+				} else {}
+					//bracket mismatch error
+			}
+			i++;
+		}
+		
+		return Arrays.copyOfRange(commandStrings, 0, i);
 	}
 	
 }

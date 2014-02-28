@@ -2,17 +2,17 @@ package commandcontrol;
 
 import java.util.List;
 
-public class PowCommand extends OneParamCommands {
+import controller.Controller;
+
+public class PowCommand extends MoreThanOneParamCommand {
 
 	public PowCommand(List<Command> l) {
-		super(l);
-		// TODO Auto-generated constructor stub
+		super(null);
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		return Controller.pow(mySubCommands.get(0).execute(), mySubCommands.get(1).execute());
 	}
 
 }

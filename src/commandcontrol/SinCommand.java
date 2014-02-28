@@ -2,17 +2,18 @@ package commandcontrol;
 
 import java.util.List;
 
+import controller.Controller;
+
 public class SinCommand extends OneParamCommands {
 
-	public SinCommand(List<Command> l) {
-		super(l);
-		// TODO Auto-generated constructor stub
+	public SinCommand(Command c) {
+		super(c);
 	}
 
 	@Override
 	public double execute() {
-		// TODO Auto-generated method stub
-		return 0.0;
+		myAmount = myInput.execute();
+		return Controller.sin(myAmount);
 	}
 
 }

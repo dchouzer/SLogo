@@ -2,15 +2,18 @@ package commandcontrol;
 
 import java.util.List;
 
+import controller.Controller;
+
 public class RotateLeftCommand extends OneParamCommands{
 
-	public RotateLeftCommand(List<Command> l) {
-		super(l);
+	public RotateLeftCommand(Command c){
+		super(c);
 	}
 
 	@Override
 	public double execute() {
-		return 0.0;
+		myAmount = myInput.execute();
+		return Controller.rotate(myAmount);
 	}
 	
 }
