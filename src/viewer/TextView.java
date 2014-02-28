@@ -12,7 +12,6 @@ public class TextView extends JSplitPane{
 		setOrientation(VERTICAL_SPLIT);
 		setTopComponent(myCommands);
 		setBottomComponent(myOutput);
-		
 	}
 	
 	public void addText(String str){
