@@ -6,12 +6,14 @@ public class TextView extends JSplitPane{
 
 	protected JTextArea myOutput;
 	protected JTextArea myCommands;
-	public TextView(JScrollPane top, JScrollPane bottom, JTextArea commands, JTextArea output){
+	public TextView(JTextArea commands, JTextArea output){
 		myCommands = commands;
 		myOutput = output;
+		JScrollPane top = new JScrollPane(myCommands);
+		JScrollPane bottom = new JScrollPane(myOutput);
 		setOrientation(VERTICAL_SPLIT);
-		setTopComponent(myCommands);
-		setBottomComponent(myOutput);
+		setTopComponent(top);
+		setBottomComponent(bottom);
 		
 	}
 	
