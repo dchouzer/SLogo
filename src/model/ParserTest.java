@@ -3,7 +3,6 @@ package model;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import commandcontrol.*;
 public class ParserTest {
 	
 	@Test
@@ -37,14 +36,11 @@ public class ParserTest {
 		Parser p = new Parser();
 		String s = "fd 50";
 		p.parseProgram(s);
-		String[] array = {"fd", "50"};
 		assertEquals(p.cursor, 2);
 	}
 	
 	@Test
 	public void testParseExecution() throws Exception {
-		NumberCommand num = new NumberCommand(50.0);
-		ForwardCommand fd = new ForwardCommand(num);
 		Parser p = new Parser();
 		String s = "fd fd sum sum fd 20 rt 100 50";
 		p.parseProgram(s);
