@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ResourceBundle;
 import java.awt.*;
 import java.awt.event.*;
@@ -34,6 +36,7 @@ public class Viewer extends JFrame {
 	        setVisible(true);
 	       
 	}
+		
 	
 	 private JMenuBar createMenuBar() {
 	        JMenuBar menuBar = new JMenuBar();
@@ -68,7 +71,23 @@ public class Viewer extends JFrame {
 	 
 	 private JMenu createHelpMenu(){
 		 JMenu menu = new JMenu("Help");
-		 
+		 menu.add(new AbstractAction("helpcommand") {
+	            public void actionPerformed (ActionEvent e) {
+	            	String helpSite = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
+					try {
+						URI location = new java.net.URI(helpSite);
+						try {
+							java.awt.Desktop.getDesktop().browse(location);
+						} 
+						catch (IOException e1) {
+							e1.printStackTrace();
+						}
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+	            }}); 
 		 
 		 return menu;
 	 }
