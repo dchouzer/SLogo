@@ -40,11 +40,11 @@ public class Turtle extends JGObject{
 	}
 	
 	public void hideTurtle() {
-		
+		isVisible = false;
 	}
 
 	public void showTurtle() {
-
+		isVisible = true;
 	}
 
 	public void remove() {
