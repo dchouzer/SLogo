@@ -2,6 +2,10 @@ package model;
 
 import static org.junit.Assert.*;
 
+/*
+ * @author David Chou
+ */
+
 import org.junit.Test;
 import jgame.*;
 import jgame.platform.JGEngine;

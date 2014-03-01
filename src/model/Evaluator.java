@@ -4,6 +4,11 @@ import java.util.List;
 import commandcontrol.*;
 
 
+
+/*
+ * @author David Chou
+ */
+
 public class Evaluator {
 
 	List<Command> commandListToEvaluate;

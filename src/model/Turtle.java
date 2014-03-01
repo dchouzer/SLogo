@@ -3,6 +3,11 @@ package model;
 import jgame.JGImage;
 import jgame.JGObject;
 
+/*
+ * @author David Chou
+ * @author Kat Krieger
+ */
+
 public class Turtle extends JGObject{
 
 	private double myAngle;

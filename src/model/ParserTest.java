@@ -1,5 +1,10 @@
 package model;
 
+/*
+ * @author David Chou
+ * @author Jeremiah Siochi
+ */
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;

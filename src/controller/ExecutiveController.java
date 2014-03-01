@@ -1,6 +1,10 @@
 package controller;
 import model.*;
 
+/*
+ * @author David Chou
+ */
+
 public class ExecutiveController {
 
 	private Parser myParser;

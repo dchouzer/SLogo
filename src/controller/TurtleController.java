@@ -1,6 +1,10 @@
 package controller;
 import model.*;
 
+/*
+ * @author Richard Cao
+ */
+
 public class TurtleController {
 	
 	private Turtle myTurtle;
