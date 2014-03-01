@@ -36,17 +36,16 @@ public class Viewer extends JFrame {
 	}
 	
 	 private JMenuBar createMenuBar() {
-	        JMenuBar menuBar;
-	        JMenu menu, submenu;
-	        JMenuItem menuItem;
-	        JRadioButtonMenuItem rbMenuItem;
-	 
-	        //Create the menu bar.
-	        menuBar = new JMenuBar();
-	        menu = new JMenu("Choose Pen Color");
+	        JMenuBar menuBar = new JMenuBar();
+	        menuBar.add(createColorMenu());
+	        menuBar.add(createHelpMenu());
+	        return menuBar;
+	    }
+	 private JMenu createColorMenu(){
+		 	JMenu menu = new JMenu("Choose Pen Color");
 	        menu.setMnemonic(KeyEvent.VK_A);
-	        menuBar.add(menu);
 	        ButtonGroup group = new ButtonGroup();
+	        JRadioButtonMenuItem rbMenuItem;
 	        rbMenuItem = new JRadioButtonMenuItem("Yellow");
 	        rbMenuItem.setSelected(true);
 	        rbMenuItem.setMnemonic(KeyEvent.VK_Y);
@@ -64,10 +63,16 @@ public class Viewer extends JFrame {
 	        rbMenuItem.setMnemonic(KeyEvent.VK_R);
 	        group.add(rbMenuItem);
 	        menu.add(rbMenuItem);
+	        return menu;
+	 }
 	 
-	        return menuBar;
-	    }
-
+	 private JMenu createHelpMenu(){
+		 JMenu menu = new JMenu("Help");
+		 
+		 
+		 return menu;
+	 }
+	 
 	 
 	 
 	 public static void main(String[] args) {
