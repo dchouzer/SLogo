@@ -11,7 +11,7 @@ public class SLogoView extends JGEngine {
     int width = 480;
     initEngineComponent(width, height);
 	defineMedia("mygame.tbl");
-    Turtle firstTurtle = new Turtle(10, 50 ,0, getImage());
+    Turtle firstTurtle = new Turtle(10, 50 ,0);
 	}
 	
 	

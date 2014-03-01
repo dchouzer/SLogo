@@ -10,16 +10,18 @@ public class Turtle extends JGObject{
 
 	public Turtle(double x, double y, double speed) {
 		super("turtle", true, x, y, 1, "turtle", 0, 0, speed, speed, -1);
-		myAngle = 0.0;
+		myAngle = 90.0;
 		isVisible = true;
 	}
 
 	public void moveForward(double magnitude) {
-		
+		x += magnitude * (Math.cos(myAngle)*180);
+		y += magnitude * (Math.sin(myAngle)*180);
 	}
 
 	public void moveBackward(double magnitude) {
-		
+		x -= magnitude * (Math.cos(myAngle)*180);
+		y -= magnitude * (Math.sin(myAngle)*180);
 	}
 	
 	public void rotateLeft(double angleToRotate) {
