@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class FullView extends JSplitPane{
 
-	public FullView(TextInput textInput, UpperView upper){
+	public FullView(TextInputArea textInput, UpperView upper){
 
 		setOrientation(VERTICAL_SPLIT);
 		setTopComponent(upper);
