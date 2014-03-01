@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ResourceBundle;
 import java.awt.*;
 import java.awt.event.*;
@@ -34,19 +36,19 @@ public class Viewer extends JFrame {
 	        setVisible(true);
 	       
 	}
+		
 	
 	 private JMenuBar createMenuBar() {
-	        JMenuBar menuBar;
-	        JMenu menu, submenu;
-	        JMenuItem menuItem;
-	        JRadioButtonMenuItem rbMenuItem;
-	 
-	        //Create the menu bar.
-	        menuBar = new JMenuBar();
-	        menu = new JMenu("Choose Pen Color");
+	        JMenuBar menuBar = new JMenuBar();
+	        menuBar.add(createColorMenu());
+	        menuBar.add(createHelpMenu());
+	        return menuBar;
+	    }
+	 private JMenu createColorMenu(){
+		 	JMenu menu = new JMenu("Choose Pen Color");
 	        menu.setMnemonic(KeyEvent.VK_A);
-	        menuBar.add(menu);
 	        ButtonGroup group = new ButtonGroup();
+	        JRadioButtonMenuItem rbMenuItem;
 	        rbMenuItem = new JRadioButtonMenuItem("Yellow");
 	        rbMenuItem.setSelected(true);
 	        rbMenuItem.setMnemonic(KeyEvent.VK_Y);
@@ -64,10 +66,32 @@ public class Viewer extends JFrame {
 	        rbMenuItem.setMnemonic(KeyEvent.VK_R);
 	        group.add(rbMenuItem);
 	        menu.add(rbMenuItem);
+	        return menu;
+	 }
 	 
-	        return menuBar;
-	    }
-
+	 private JMenu createHelpMenu(){
+		 JMenu menu = new JMenu("Help");
+		 menu.add(new AbstractAction("helpcommand") {
+	            public void actionPerformed (ActionEvent e) {
+	            	String helpSite = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
+					try {
+						URI location = new java.net.URI(helpSite);
+						try {
+							java.awt.Desktop.getDesktop().browse(location);
+						} 
+						catch (IOException e1) {
+							e1.printStackTrace();
+						}
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+	            }}); 
+		 
+		 return menu;
+	 }
+	 
 	 
 	 
 	 public static void main(String[] args) {

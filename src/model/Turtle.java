@@ -13,8 +13,8 @@ public class Turtle extends JGObject{
 	private double myAngle;
 	private boolean isVisible;
 
-	public Turtle(double x, double y, double speed) {
-		super("turtle", true, x, y, 1, "turtle", 0, 0, speed, speed, -1);
+	public Turtle(double x, double y, double speed, String str) {
+		super("turtle", true, x, y, 1, str, 0, 0, speed, speed, -1);
 		myAngle = 90.0;
 		isVisible = true;
 	}

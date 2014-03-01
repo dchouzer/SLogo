@@ -2,7 +2,7 @@ package commandcontrol;
 
 import java.util.List;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class ProductCommand extends MoreThanOneParamCommand {
 
@@ -12,7 +12,7 @@ public class ProductCommand extends MoreThanOneParamCommand {
 
 	@Override
 	public double execute() {
-		return TurtleController.multiply(mySubCommands.get(0).execute(), mySubCommands.get(1).execute());
+		return Controller.multiply(mySubCommands.get(0).execute(), mySubCommands.get(1).execute());
 	}
 
 }

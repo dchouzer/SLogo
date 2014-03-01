@@ -19,7 +19,7 @@ public class TurtleTest extends JGEngine{
 	
 	@Test
 	public void testMove() {
-		Turtle turtle = new Turtle(0.0, 0.0, 1.0);
+		Turtle turtle = new Turtle(0.0, 0.0, 1.0, null);
 		turtle.moveForward(30.0);
 		assertEquals(30.0, turtle.y, 0.001);
 	}

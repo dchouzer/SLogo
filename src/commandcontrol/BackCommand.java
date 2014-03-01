@@ -1,6 +1,6 @@
 package commandcontrol;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class BackCommand extends OneParamCommands {
 	
@@ -10,7 +10,7 @@ public class BackCommand extends OneParamCommands {
 	
 	public double execute(){
 		myAmount = -(myInput.execute());
-		return TurtleController.move(myAmount);
+		return Controller.move(myAmount);
 	}
 }
 

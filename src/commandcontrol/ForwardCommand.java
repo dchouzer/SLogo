@@ -1,6 +1,6 @@
 package commandcontrol;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class ForwardCommand extends OneParamCommands {
 	
@@ -10,6 +10,6 @@ public class ForwardCommand extends OneParamCommands {
 	
 	public double execute(){
 		myAmount = myInput.execute();
-		return TurtleController.move(myAmount);
+		return Controller.move(myAmount);
 	}
 }
