@@ -1,6 +1,6 @@
 package commandcontrol;
 
-import controller.Controller;
+import controller.TurtleController;
 
 public class MinusCommand extends OneParamCommands {
 
@@ -11,7 +11,7 @@ public class MinusCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.setNegativeNumbers(myAmount);
+		return TurtleController.setNegativeNumbers(myAmount);
 	}
 
 }

@@ -2,7 +2,7 @@ package commandcontrol;
 
 import java.util.List;
 
-import controller.Controller;
+import controller.TurtleController;
 
 public class RotateRightCommand extends OneParamCommands{
 
@@ -13,7 +13,7 @@ public class RotateRightCommand extends OneParamCommands{
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.rotate(myAmount);
+		return TurtleController.rotate(myAmount);
 	}
 	
 }
