@@ -2,7 +2,7 @@ package commandcontrol;
 
 import java.util.List;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class TanCommand extends OneParamCommands {
 
@@ -14,7 +14,7 @@ public class TanCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return TurtleController.tan(myAmount);
+		return Controller.tan(myAmount);
 	}
 
 }

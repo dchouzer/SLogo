@@ -2,7 +2,7 @@ package commandcontrol;
 
 import java.util.List;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class LogCommand extends OneParamCommands {
 
@@ -14,7 +14,7 @@ public class LogCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return TurtleController.log(myAmount);
+		return Controller.log(myAmount);
 	}
 
 }

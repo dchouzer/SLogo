@@ -2,7 +2,7 @@ package commandcontrol;
 
 import java.util.List;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class CosCommand extends OneParamCommands {
 
@@ -13,7 +13,7 @@ public class CosCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return TurtleController.cos(myAmount);
+		return Controller.cos(myAmount);
 	}
 
 }

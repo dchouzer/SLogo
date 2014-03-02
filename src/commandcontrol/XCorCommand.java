@@ -1,12 +1,12 @@
 package commandcontrol;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class XCorCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		return TurtleController.xcor();
+		return Controller.xcor();
 	}
 
 }

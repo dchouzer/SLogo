@@ -1,31 +1,32 @@
 package viewer;
-import model.Turtle;
-import jgame.platform.JGEngine;
+import java.awt.Component;
 
-public class VisualizerArea extends JGEngine {
+import model.Turtle;
+
+public class VisualizerArea extends Component {
 	
 	private String image;
 	
 	public VisualizerArea(){
     int height = 480;
     int width = 480;
-    initEngineComponent(width, height);
-	defineMedia("mygame.tbl");
+//    initEngineComponent(width, height);
+//	defineMedia("mygame.tbl");
     Turtle firstTurtle = new Turtle(10, 50 ,0, getImage());
 	}
 	
 	
-	@Override
-	public void initCanvas() {
-		// TODO Auto-generated method stub
-		setCanvasSettings(100,50,4,4, null, null, null);
-		
-	}
+//	@Override
+//	public void initCanvas() {
+//		// TODO Auto-generated method stub
+//		setCanvasSettings(100,50,4,4, null, null, null);
+//		
+//	}
 
-	@Override
-	public void initGame() {
-		setFrameRate(30,1);
-	}
+//	@Override
+//	public void initGame() {
+//		setFrameRate(30,1);
+//	}
 	
 	
 	

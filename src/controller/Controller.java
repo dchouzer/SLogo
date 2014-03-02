@@ -5,7 +5,7 @@ import model.*;
  * @author Richard Cao
  */
 
-public class TurtleController {
+public class Controller {
 	
 	private Turtle myTurtle;
 	

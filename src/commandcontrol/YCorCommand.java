@@ -1,12 +1,12 @@
 package commandcontrol;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class YCorCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		return TurtleController.ycor();
+		return Controller.ycor();
 	}
 
 }

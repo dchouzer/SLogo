@@ -1,12 +1,12 @@
 package commandcontrol;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class HeadingCommand extends ZeroParamCommands {
 	
 	@Override
 	public double execute() {
-		return TurtleController.getHeading();
+		return Controller.getHeading();
 	}
 
 }

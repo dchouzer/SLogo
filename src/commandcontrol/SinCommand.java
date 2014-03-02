@@ -2,7 +2,7 @@ package commandcontrol;
 
 import java.util.List;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class SinCommand extends OneParamCommands {
 
@@ -13,7 +13,7 @@ public class SinCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return TurtleController.sin(myAmount);
+		return Controller.sin(myAmount);
 	}
 
 }

@@ -1,13 +1,13 @@
 package commandcontrol;
 
-import controller.TurtleController;
+import controller.Controller;
 
 public class ClearScreenCommand extends ZeroParamCommands {
 
 	@Override
 	public double execute() {
-		TurtleController.clearScreen();
-		return TurtleController.setXY(0, 0);
+		Controller.clearScreen();
+		return Controller.setXY(0, 0);
 	}
 
 }
