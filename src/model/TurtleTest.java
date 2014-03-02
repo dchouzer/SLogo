@@ -17,7 +17,7 @@ public class TurtleTest {
 	
 	@Test
 	public void testMove() {
-		Turtle turtle = new Turtle(0.0, 0.0, 1.0, null);
+		Turtle turtle = new Turtle(0.0, 0.0);
 		turtle.moveForward(30.0);
 		assertEquals(30.0, 0, 0.001);
 	}

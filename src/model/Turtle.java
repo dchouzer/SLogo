@@ -1,53 +1,74 @@
 package model;
 
+import java.awt.geom.Point2D;
+import java.util.List;
+
 /*
  * @author David Chou
  * @author Kat Krieger
  */
 
-public class Turtle{
+public class Turtle {
 
-	private double myAngle;
+	private double angle;
 	private boolean isVisible;
+	private double x, y;
+	private Pen pen;
 
-	public Turtle(double x, double y, double speed, String str) {
-//		super("turtle", true, x, y, 1, str, 0, 0, speed, speed, -1);
-		myAngle = 90.0;
+	public Turtle(double x, double y) {
+		angle = 0;
 		isVisible = true;
+		this.x = x;
+		this.y = y;
+		pen = new Pen(x, y);
 	}
 	
 	/*
 	 * Allows the model to place the turtle at a particular position
 	 */
 	public void setXY(double x, double y) {
-//		this.x = x;
-//		this.y = y;
+		this.x = x;
+		this.y = y;
+		pen.addPoint(x, y);
+	}
+	
+	public double getX() {
+		return x;
+	}
+	
+	public double getY() {
+		return y;
+	}
+	
+	public double getAngle() {
+		return angle;
+	}
+	
+	public void setAngle(double angle) {
+		this.angle = angle;
 	}
 
-	//Refactor the methods so that the movement is placed inside of the model
 	public void moveForward(double magnitude) {
-//		x += magnitude * (Math.cos(myAngle)*180);
-//		y += magnitude * (Math.sin(myAngle)*180);
+		this.setXY(x + magnitude * (Math.cos(angle*Math.PI/180)), 
+				y + magnitude * (Math.sin(angle*Math.PI/180)));
 	}
 
 	public void moveBackward(double magnitude) {
-//		x -= magnitude * (Math.cos(myAngle)*180);
-//		y -= magnitude * (Math.sin(myAngle)*180);
+		this.moveForward(-1 * magnitude);
 	}
 	
 	public void rotateLeft(double angleToRotate) {
-		myAngle += angleToRotate;
+		angle += angleToRotate;
 	
 	}
 
 	public void rotateRight(double angleToRotate) {
-		myAngle -= angleToRotate;
+		rotateLeft(-1 * angle);
 	}
 	
 	//Throws the turtle back to original position
 	public void reset() {
-//		x = 0;
-//		y = 0;
+		setXY(0, 0);
 	}
 	
 	public void hideTurtle() {
@@ -57,8 +78,18 @@ public class Turtle{
 	public void showTurtle() {
 		isVisible = true;
 	}
-
-	public void remove() {
-		
+	
+	public void undoMove() {
+		this.x = pen.getHistory().get(pen.getHistory().size() - 2).getX(); 
+		this.y = pen.getHistory().get(pen.getHistory().size() - 2).getY();
+		pen.undoTrace();
+	}
+	
+	public List<Point2D> getLocationHistory() {
+		return pen.getHistory();
+	}
+	
+	public Pen getPen() {
+		return pen;
 	}
 }
