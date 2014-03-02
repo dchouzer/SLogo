@@ -1,7 +1,7 @@
 package model;
 
-import pensupplements.*;
-
+import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -11,14 +11,16 @@ import java.util.List;
 public class Pen {
 
 	private boolean isVisible;
-	private double myAngle;
-	private List<Location> myList;
+	private List<Point2D> pointHistory;
 	
-	public Pen(double x, double y, double speed) {
-//		super("turtle", true, x, y, 1, "turtle", 0, 0, speed, speed, -1);
-		myAngle = 90.0;
+	public Pen(int initialX, int initialY) {
 		isVisible = true;
-		myList = new ArrayList<Location>();
+		pointHistory = new ArrayList<Point2D>();
+		this.addPoint(initialX, initialY);
+	}
+	
+	public Pen(double initialX, double initialY) {
+		this((int) initialX, (int) initialY);
 	}
 
 	public void turnPenOff() {
@@ -29,9 +31,30 @@ public class Pen {
 		isVisible = true;
 	}
 	
-	public void setXY(double x, double y) {
-//		this.x = x;
-//		this.y = y;
+	public void addPoint(int x, int y) {
+		this.addPoint(new Point(x ,y));
+	}
+	
+	public void addPoint(double x, double y) {
+		this.addPoint((int) x, (int) y);
+	}
+	
+	public void addPoint(Point2D point) {
+		pointHistory.add(point);
+	}
+	
+	public void undoTrace() {
+		try {
+			pointHistory.remove(pointHistory.size() - 1);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<Point2D> getHistory() {
+		return pointHistory;
 	}
 }
 
