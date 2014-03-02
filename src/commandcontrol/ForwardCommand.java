@@ -10,6 +10,7 @@ public class ForwardCommand extends OneParamCommands {
 	
 	public double execute(){
 		myAmount = myInput.execute();
-		return Controller.move(myAmount);
+		Controller.move(myAmount);
+		return myAmount;
 	}
 }

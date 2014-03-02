@@ -32,44 +32,44 @@ public class Controller {
 		return;
 	}
 	
-	public static void setHeading(double degrees){
-		return;
+	public static double setHeading(double degrees){
+		return 0.0;
 	}
 	
-	public static void setXY(double x, double y){
-		return;
+	public static double setXY(double x, double y){
+		return 0.0;
 	}
 	
-	public static void changePenVisibility(double status){
-		return;
+	public static double changePenVisibility(double status){
+		return 0.0;
 	}
 	
-	public static void changeTurtleVisibility(double status){
-		return;
+	public static double changeTurtleVisibility(double status){
+		return 0.0;
 	}
 	
 	public static void clearScreen(){
 		
 	}
 	
-	public static void xcor(){
-		return;
+	public static double xcor(){
+		return 0.0;
 	}
 	
-	public static void ycor(){
-		return;
+	public static double ycor(){
+		return 0.0;
 	}
 	
-	public static void getHeading(){
-		return;
+	public static double getHeading(){
+		return 0.0;
 	}
 	
-	public static void getPenVisibility(){
-		return;
+	public static double getPenVisibility(){
+		return 0.0;
 	}
 	
-	public static void getTurtleVisibility(){
-		return;
+	public static double getTurtleVisibility(){
+		return 0.0;
 	}
 	
 	public static double sum(double num1, double num2){

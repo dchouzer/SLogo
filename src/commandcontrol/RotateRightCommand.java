@@ -13,7 +13,8 @@ public class RotateRightCommand extends OneParamCommands{
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.rotate(myAmount);
+		Controller.rotate(myAmount);
+		return myAmount;
 	}
 	
 }
