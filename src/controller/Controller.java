@@ -1,4 +1,8 @@
 package controller;
+import java.util.Map;
+
+import viewer.Viewer;
+
 import model.*;
 
 /*
@@ -7,54 +11,65 @@ import model.*;
 
 public class Controller {
 	
-	private Turtle myTurtle;
+	private Map<Integer, Turtle> myTurtles;
+	private Parser myParser;
+	private Viewer myViewer;
 	
-	public static double move(double dist){
-		return dist;
+	public Controller () {
+		myParser = new Parser();
+		myViewer = new Viewer();
 	}
 	
-	public static double rotate(double degrees){
-		return degrees;
+	public void execute(String program) throws Exception {
+		myParser.parseProgram(program);
 	}
 	
-	public static double setHeading(double degrees){
-		return degrees;
+	public static void move(double dist){
+		return;
 	}
 	
-	public static double setXY(double x, double y){
-		return 0.0;
+	public static void rotate(double degrees){
+		return;
 	}
 	
-	public static double changePenVisibility(double status){
-		return status;
+	public static void setHeading(double degrees){
+		return;
 	}
 	
-	public static double changeTurtleVisibility(double status){
-		return status;
+	public static void setXY(double x, double y){
+		return;
+	}
+	
+	public static void changePenVisibility(double status){
+		return;
+	}
+	
+	public static void changeTurtleVisibility(double status){
+		return;
 	}
 	
 	public static void clearScreen(){
 		
 	}
 	
-	public static double xcor(){
-		return 0.0;
+	public static void xcor(){
+		return;
 	}
 	
-	public static double ycor(){
-		return 0.0;
+	public static void ycor(){
+		return;
 	}
 	
-	public static double getHeading(){
-		return 0.0;
+	public static void getHeading(){
+		return;
 	}
 	
-	public static double getPenVisibility(){
-		return 0.0;
+	public static void getPenVisibility(){
+		return;
 	}
 	
-	public static double getTurtleVisibility(){
-		return 0.0;
+	public static void getTurtleVisibility(){
+		return;
 	}
 	
 	public static double sum(double num1, double num2){

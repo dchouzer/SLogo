@@ -25,7 +25,7 @@ public class AggregateViewer extends JFrame {
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			JTextArea myCommands = new JTextArea(20,20);
 			JTextArea myOutput = new JTextArea(20,20);
-			VisualizerArea myGame = new VisualizerArea(); 
+			Viewer myGame = new Viewer(); 
 			TextViewerArea textView = new TextViewerArea(myCommands, myOutput);
 	        UpperView myUpperView = new UpperView(textView, myGame);
 	        TextInputArea myTextInput = new TextInputArea();

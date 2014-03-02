@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class UpperView extends JSplitPane{
 
-	public UpperView(TextViewerArea textview , VisualizerArea slogo){
+	public UpperView(TextViewerArea textview , Viewer slogo){
 
 		setOrientation(HORIZONTAL_SPLIT);
 		setLeftComponent(textview);
