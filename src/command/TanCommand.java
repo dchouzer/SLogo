@@ -14,7 +14,7 @@ public class TanCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.tan(myAmount);
+		return Math.tan(myAmount);
 	}
 
 }

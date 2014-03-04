@@ -13,7 +13,7 @@ public class CosCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.cos(myAmount);
+		return Math.cos(myAmount);
 	}
 
 }

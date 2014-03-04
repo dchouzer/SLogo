@@ -13,7 +13,7 @@ public class RandomCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.random(myAmount);
+		return Math.random() * myAmount;
 	}
 
 }

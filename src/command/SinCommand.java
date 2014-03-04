@@ -13,7 +13,7 @@ public class SinCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.sin(myAmount);
+		return Math.sin(myAmount);
 	}
 
 }

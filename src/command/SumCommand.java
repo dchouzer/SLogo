@@ -12,7 +12,7 @@ public class SumCommand extends MoreThanOneParamCommand {
 
 	@Override
 	public double execute() {
-		return Controller.sum(mySubCommands.get(0).execute(), mySubCommands.get(1).execute());
+		return mySubCommands.get(0).execute() + mySubCommands.get(1).execute();
 	}
 
 }

@@ -7,12 +7,12 @@ import controller.Controller;
 public class PowCommand extends MoreThanOneParamCommand {
 
 	public PowCommand(List<Command> l) {
-		super(null);
+		super(l);
 	}
 
 	@Override
 	public double execute() {
-		return Controller.pow(mySubCommands.get(0).execute(), mySubCommands.get(1).execute());
+		return Math.pow(mySubCommands.get(0).execute(), mySubCommands.get(1).execute());
 	}
 
 }
