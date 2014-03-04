@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class ATanCommand extends OneParamCommands {
+public class ATanCommand extends OneParamCommand {
 
 	public ATanCommand(Command c) {
 		super(c);

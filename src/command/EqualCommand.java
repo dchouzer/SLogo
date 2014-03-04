@@ -1,8 +1,8 @@
-package commandcontrol;
+package command;
 
 import java.util.List;
 
-public class EqualCommand extends MoreThanOneParamCommands {
+public class EqualCommand extends MoreThanOneParamCommand {
 
 	public EqualCommand(List<Command> l) {
 		super(l);

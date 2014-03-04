@@ -1,8 +1,8 @@
-package commandcontrol;
+package command;
 
 import java.util.List;
 
-public class OrCommand extends MoreThanOneParamCommands {
+public class OrCommand extends MoreThanOneParamCommand {
 
 	public OrCommand(List<Command> l) {
 		super(l);

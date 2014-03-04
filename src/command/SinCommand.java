@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class SinCommand extends OneParamCommands {
+public class SinCommand extends OneParamCommand {
 
 	public SinCommand(Command c) {
 		super(c);

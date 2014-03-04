@@ -2,7 +2,7 @@ package command;
 
 import controller.Controller;
 
-public class MinusCommand extends OneParamCommands {
+public class MinusCommand extends OneParamCommand {
 
 	public MinusCommand(Command c) {
 		super(c);

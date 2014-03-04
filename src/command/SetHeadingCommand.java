@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class SetHeadingCommand extends OneParamCommands {
+public class SetHeadingCommand extends OneParamCommand {
 
 	public SetHeadingCommand(Command c) {
 		super(c);

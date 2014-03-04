@@ -2,7 +2,7 @@ package command;
 
 import controller.Controller;
 
-public class BackCommand extends OneParamCommands {
+public class BackCommand extends OneParamCommand {
 	
 	public BackCommand(Command c) {
 		super(c);

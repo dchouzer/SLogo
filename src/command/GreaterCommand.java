@@ -1,8 +1,8 @@
-package commandcontrol;
+package command;
 
 import java.util.List;
 
-public class GreaterCommand extends MoreThanOneParamCommands {
+public class GreaterCommand extends MoreThanOneParamCommand {
 
 	public GreaterCommand(List<Command> l) {
 		super(l);

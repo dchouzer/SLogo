@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class LogCommand extends OneParamCommands {
+public class LogCommand extends OneParamCommand {
 
 	public LogCommand(Command c) {
 		super(c);

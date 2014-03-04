@@ -1,8 +1,8 @@
-package commandcontrol;
+package command;
 
 import java.util.List;
 
-public class NotEqualCommand extends MoreThanOneParamCommands {
+public class NotEqualCommand extends MoreThanOneParamCommand {
 
 	public NotEqualCommand(List<Command> l) {
 		super(l);

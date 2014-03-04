@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class RotateRightCommand extends OneParamCommands{
+public class RotateRightCommand extends OneParamCommand{
 
 	public RotateRightCommand(Command c) {
 		super(c);

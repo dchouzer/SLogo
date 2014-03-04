@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class CosCommand extends OneParamCommands {
+public class CosCommand extends OneParamCommand {
 
 	public CosCommand(Command c) {
 		super(c);

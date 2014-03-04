@@ -1,6 +1,6 @@
-package commandcontrol;
+package command;
 
-public class NotCommand extends OneParamCommands {
+public class NotCommand extends OneParamCommand {
 
 	public NotCommand(Command c) {
 		super(c);

@@ -1,4 +1,4 @@
-package model;
+package program;
 
 /*
  * @author David Chou
@@ -12,7 +12,6 @@ import java.util.List;
 import org.junit.Test;
 
 import command.Command;
-import program.Parser;
 public class ParserTest {
 	
 	@Test

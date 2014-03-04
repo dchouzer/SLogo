@@ -2,7 +2,7 @@ package command;
 
 import controller.Controller;
 
-public class ForwardCommand extends OneParamCommands {
+public class ForwardCommand extends OneParamCommand {
 	
 	public ForwardCommand(Command c) {
 		super(c);

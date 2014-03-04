@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class TanCommand extends OneParamCommands {
+public class TanCommand extends OneParamCommand {
 
 	public TanCommand(Command c) {
 		super(c);
