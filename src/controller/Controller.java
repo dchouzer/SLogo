@@ -1,12 +1,14 @@
 package controller;
 import java.util.Map;
 
+import program.Evaluator;
+import program.Parser;
 import viewer.Viewer;
-
 import model.*;
 
-/*
+/**
  * @author Richard Cao
+ * @author jerrysmooth
  */
 
 public class Controller {
@@ -21,7 +23,7 @@ public class Controller {
 	}
 	
 	public void execute(String program) throws Exception {
-		myParser.parseProgram(program);
+		(new Evaluator()).execute(myParser.parseProgram(program));
 	}
 	
 	public static void move(double dist){
@@ -33,6 +35,7 @@ public class Controller {
 	}
 	
 	public static double setHeading(double degrees){
+		//return myViewer.setHeading()
 		return 0.0;
 	}
 	
@@ -70,50 +73,6 @@ public class Controller {
 	
 	public static double getTurtleVisibility(){
 		return 0.0;
-	}
-	
-	public static double sum(double num1, double num2){
-		return num1 + num2;
-	}
-	
-	public static double multiply(double num1, double num2){
-		return num1 * num2;
-	}
-	
-	public static double remainder(double num1, double num2){
-		return num1 % num2;
-	}
-	
-	public static double setNegativeNumbers(double expr){
-		return -expr;
-	}
-	
-	public static double random(double max){
-		return Math.random() * max;
-	}
-	
-	public static double sin(double degrees){
-		return Math.sin(degrees);
-	}
-	
-	public static double cos(double degrees){
-		return Math.cos(degrees);
-	}
-	
-	public static double tan(double degrees){
-		return Math.tan(degrees);
-	}
-	
-	public static double atan(double degrees){
-		return Math.atan(degrees);
-	}
-	
-	public static double log(double expr){
-		return Math.log(expr);
-	}
-	
-	public static double pow(double base, double exponent){
-		return Math.pow(base, exponent);
 	}
 
 }

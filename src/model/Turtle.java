@@ -1,11 +1,13 @@
 package model;
 
+import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.List;
 
-/*
+/**
  * @author David Chou
  * @author Kat Krieger
+ * @author jerrysmooth
  */
 
 public class Turtle {
@@ -26,10 +28,12 @@ public class Turtle {
 	/*
 	 * Allows the model to place the turtle at a particular position
 	 */
-	public void setXY(double x, double y) {
+	public double setXY(double x, double y) {
+		double distanceMoved = Point.distance(this.x, this.y, x, y);
 		this.x = x;
 		this.y = y;
 		pen.addPoint(x, y);
+		return distanceMoved;
 	}
 	
 	public double getX() {
@@ -44,39 +48,46 @@ public class Turtle {
 		return angle;
 	}
 	
-	public void setAngle(double angle) {
+	public double setAngle(double angle) {
 		this.angle = angle;
+		return angle;
 	}
 
-	public void moveForward(double magnitude) {
+	public double moveForward(double magnitude) {
 		this.setXY(x + magnitude * (Math.cos(angle*Math.PI/180)), 
 				y + magnitude * (Math.sin(angle*Math.PI/180)));
+		return magnitude;
 	}
 
-	public void moveBackward(double magnitude) {
+	public double moveBackward(double magnitude) {
 		this.moveForward(-1 * magnitude);
+		return magnitude;
 	}
 	
-	public void rotateLeft(double angleToRotate) {
+	public double rotateLeft(double angleToRotate) {
 		angle += angleToRotate;
+		return angleToRotate;
 	
 	}
 
-	public void rotateRight(double angleToRotate) {
-		rotateLeft(-1 * angle);
+	public double rotateRight(double angleToRotate) {
+		rotateLeft(-1 * angleToRotate);
+		return angleToRotate;
 	}
 	
 	//Throws the turtle back to original position
-	public void reset() {
-		setXY(0, 0);
+	public double reset() {
+		return setXY(0, 0);
 	}
 	
-	public void hideTurtle() {
+	public int hideTurtle() {
 		isVisible = false;
+		return 0;
 	}
 
-	public void showTurtle() {
+	public int showTurtle() {
 		isVisible = true;
+		return 1;
 	}
 	
 	public void undoMove() {

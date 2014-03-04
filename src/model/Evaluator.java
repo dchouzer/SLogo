@@ -1,7 +1,7 @@
 package model;
 import java.util.List;
 
-import commandcontrol.*;
+import command.*;
 
 
 

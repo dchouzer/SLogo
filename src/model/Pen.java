@@ -4,8 +4,10 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
-/*
+
+/**
  * @author David Chou
+ * @author jerrysmooth
  */
 
 public class Pen {
@@ -23,12 +25,18 @@ public class Pen {
 		this((int) initialX, (int) initialY);
 	}
 
-	public void turnPenOff() {
+	public int turnPenOff() {
 		isVisible = false;
+		return 0;
 	}
 	
-	public void turnPenOn() {
+	public int turnPenOn() {
 		isVisible = true;
+		return 1;
+	}
+	
+	public boolean isPenDrawing() {
+		return isVisible;
 	}
 	
 	public void addPoint(int x, int y) {
