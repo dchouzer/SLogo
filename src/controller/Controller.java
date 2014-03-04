@@ -1,12 +1,14 @@
 package controller;
 import java.util.Map;
 
+import program.Evaluator;
+import program.Parser;
 import viewer.Viewer;
-
 import model.*;
 
-/*
+/**
  * @author Richard Cao
+ * @author jerrysmooth
  */
 
 public class Controller {
@@ -21,7 +23,7 @@ public class Controller {
 	}
 	
 	public void execute(String program) throws Exception {
-		myParser.parseProgram(program);
+		(new Evaluator()).execute(myParser.parseProgram(program));
 	}
 	
 	public static void move(double dist){
@@ -33,6 +35,7 @@ public class Controller {
 	}
 	
 	public static double setHeading(double degrees){
+		//return myViewer.setHeading()
 		return 0.0;
 	}
 	
