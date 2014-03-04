@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class QuotientCommand extends MoreThanOneParamCommand {
+public class QuotientCommand extends MoreThanOneParamCommands {
 
 	public QuotientCommand(List<Command> l) {
 		super(l);
@@ -13,7 +13,7 @@ public class QuotientCommand extends MoreThanOneParamCommand {
 
 	@Override
 	public double execute() {
-		return Controller.multiply(mySubCommands.get(0).execute(), 1.0/mySubCommands.get(1).execute());
+		return mySubCommands.get(0).execute()/mySubCommands.get(1).execute();
 	}
 
 }

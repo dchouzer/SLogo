@@ -14,7 +14,7 @@ public class ATanCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.atan(myAmount);
+		return Math.atan(myAmount);
 	}
 
 }

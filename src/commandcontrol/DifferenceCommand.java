@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class DifferenceCommand extends MoreThanOneParamCommand {
+public class DifferenceCommand extends MoreThanOneParamCommands {
 
 	public DifferenceCommand(List<Command> l) {
 		super(l);
@@ -12,7 +12,7 @@ public class DifferenceCommand extends MoreThanOneParamCommand {
 
 	@Override
 	public double execute() {
-		return Controller.sum(mySubCommands.get(0).execute(), -(mySubCommands.get(1).execute()));
+		return (mySubCommands.get(0).execute()-(mySubCommands.get(1).execute()));
 	}
 
 }

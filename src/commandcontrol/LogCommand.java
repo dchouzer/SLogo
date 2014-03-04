@@ -14,7 +14,7 @@ public class LogCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.log(myAmount);
+		return Math.log(myAmount);
 	}
 
 }

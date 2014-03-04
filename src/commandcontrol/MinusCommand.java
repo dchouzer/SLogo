@@ -11,7 +11,7 @@ public class MinusCommand extends OneParamCommands {
 	@Override
 	public double execute() {
 		myAmount = myInput.execute();
-		return Controller.setNegativeNumbers(myAmount);
+		return -(myAmount);
 	}
 
 }

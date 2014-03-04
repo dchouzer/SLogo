@@ -4,7 +4,7 @@ import java.util.List;
 
 import controller.Controller;
 
-public class ProductCommand extends MoreThanOneParamCommand {
+public class ProductCommand extends MoreThanOneParamCommands {
 
 	public ProductCommand(List<Command> l) {
 		super(l);
@@ -12,7 +12,7 @@ public class ProductCommand extends MoreThanOneParamCommand {
 
 	@Override
 	public double execute() {
-		return Controller.multiply(mySubCommands.get(0).execute(), mySubCommands.get(1).execute());
+		return mySubCommands.get(0).execute() * mySubCommands.get(1).execute();
 	}
 
 }
