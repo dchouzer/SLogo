@@ -3,11 +3,11 @@ import java.awt.Component;
 
 import model.Turtle;
 
-public class Viewer extends Component {
+public class TurtleViewer extends Component {
 	
 	private String image;
 	
-	public Viewer(){
+	public TurtleViewer(){
 		int height = 480;
 		int width = 480;
 //    	initEngineComponent(width, height);

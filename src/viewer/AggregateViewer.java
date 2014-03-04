@@ -25,7 +25,7 @@ public class AggregateViewer extends JFrame {
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			JTextArea myCommands = new JTextArea(20,20);
 			JTextArea myOutput = new JTextArea(20,20);
-			Viewer myGame = new Viewer(); 
+			TurtleViewer myGame = new TurtleViewer(); 
 			TextViewerArea textView = new TextViewerArea(myCommands, myOutput);
 	        UpperView myUpperView = new UpperView(textView, myGame);
 	        TextInputArea myTextInput = new TextInputArea();
@@ -34,7 +34,6 @@ public class AggregateViewer extends JFrame {
 	        setJMenuBar(createMenuBar());
 	        pack();
 	        setVisible(true);
-	       
 	}
 		
 	

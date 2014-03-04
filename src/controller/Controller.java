@@ -3,7 +3,7 @@ import java.util.Map;
 
 import program.Evaluator;
 import program.Parser;
-import viewer.Viewer;
+import viewer.TurtleViewer;
 import model.*;
 
 /**
@@ -15,11 +15,11 @@ public class Controller {
 	
 	private Map<Integer, Turtle> myTurtles;
 	private Parser myParser;
-	private Viewer myViewer;
+	private TurtleViewer myViewer;
 	
 	public Controller () {
 		myParser = new Parser();
-		myViewer = new Viewer();
+		myViewer = new TurtleViewer();
 	}
 	
 	public void execute(String program) throws Exception {
