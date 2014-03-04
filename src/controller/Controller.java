@@ -1,11 +1,9 @@
 package controller;
-import java.util.Map;
 
 import program.Evaluator;
 import program.Parser;
 import viewer.TextViewerArea;
-import viewer.Viewer;
-import model.*;
+import viewer.TurtleViewer;
 
 /**
  * @author Richard Cao
@@ -14,13 +12,15 @@ import model.*;
 
 public class Controller {
 	
-	private Map<Integer, Turtle> myTurtles;
+	//private Map<Integer, Turtle> myTurtles;
 	private Parser myParser;
-	private TextViewerArea myViewer;
+	private TextViewerArea myTextViewer;
+	private TurtleViewer myTurtleViewer;
 	
-	public Controller (Parser parser, TextViewerArea viewer) {
+	public Controller (Parser parser, TextViewerArea textViewer, TurtleViewer turtleViewer) {
 		myParser = parser;
-		myViewer = viewer;
+		myTextViewer = textViewer;
+		myTurtleViewer = turtleViewer;
 	}
 	
 	public void execute(String program) throws Exception {
