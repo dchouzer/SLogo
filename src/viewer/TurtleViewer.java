@@ -1,5 +1,11 @@
 package viewer;
 import java.awt.Component;
+import java.awt.Canvas;
+import java.awt.Stroke;
+import java.awt.Graphics2D;
+import java.awt.color.*;
+import java.awt.Dimension;
+import java.awt.Image;
 
 import model.Turtle;
 
@@ -10,23 +16,9 @@ public class TurtleViewer extends Component {
 	public TurtleViewer(){
 		int height = 480;
 		int width = 480;
-//    	initEngineComponent(width, height);
-//		defineMedia("mygame.tbl");
 		Turtle firstTurtle = new Turtle(10, 50);
 	}
 	
-	
-//	@Override
-//	public void initCanvas() {
-//		// TODO Auto-generated method stub
-//		setCanvasSettings(100,50,4,4, null, null, null);
-//		
-//	}
-
-//	@Override
-//	public void initGame() {
-//		setFrameRate(30,1);
-//	}
 	
 	public String getImage(){
 		String image;
