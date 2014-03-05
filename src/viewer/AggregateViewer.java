@@ -36,13 +36,13 @@ public class AggregateViewer extends JFrame {
 	
 	
 	
-	public AggregateViewer()
-	    {
+	public AggregateViewer(Controller controller) {
+			myController = controller;
 	        setTitle("sLogo");
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			JTextArea myCommands = new JTextArea(100,20);
 			JTextArea myOutput = new JTextArea(100,20);
-			TurtleViewer myGame = new TurtleViewer(myTurtle, TURTLE_SIZE); 
+			TurtleViewer myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, myController); 
 			TextViewerArea textView = new TextViewerArea(myCommands, myOutput);
 	        UpperView myUpperView = new UpperView(textView, myGame);
 	        TextInputArea myTextInput = new TextInputArea();
@@ -56,7 +56,5 @@ public class AggregateViewer extends JFrame {
 	 
 	 
 	 
-	 public static void main(String[] args) {
-	       AggregateViewer view = new AggregateViewer();
-	    }
-	}
+	
+}

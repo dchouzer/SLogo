@@ -23,6 +23,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import controller.Controller;
+
 import model.Turtle;
 
 public class TurtleViewer extends Component {
@@ -30,8 +32,6 @@ public class TurtleViewer extends Component {
 	private String image;
 	private boolean isToggled = true;
 	private boolean penDown = true;
-	private List<Point2D> myPointHistory;
-	private int myPenWidth;
 	private Turtle myTurtle;
 	private Dimension mySize;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.BLACK;
@@ -42,9 +42,11 @@ public class TurtleViewer extends Component {
 	//Need to transform the location of the image also
 	private double myXTransform;
 	private double myYTransform;
+	private Controller myController;
 	
 	//Need to determine how to drawLines
-	public TurtleViewer(Turtle turtle, Dimension size){	
+	public TurtleViewer(Turtle turtle, Dimension size, Controller controller){	
+		myController = controller;
 		mySize = size;
 		myTurtle = turtle;
 		createImage();

@@ -17,10 +17,10 @@ public class Controller {
 	private TextViewerArea myTextViewer;
 	private TurtleViewer myTurtleViewer;
 	
-	public Controller (Parser parser, TextViewerArea textViewer, TurtleViewer turtleViewer) {
-		myParser = parser;
-		myTextViewer = textViewer;
-		myTurtleViewer = turtleViewer;
+	public Controller () {
+		myParser = new Parser();
+		myTextViewer = new TextViewerArea(null, null);
+		myTurtleViewer = new TurtleViewer(null, null, null);
 	}
 	
 	public void execute(String program) throws Exception {
