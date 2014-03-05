@@ -1,5 +1,10 @@
 package viewer;
 
+/*
+ * @author Kat Krieger
+ * @author David Chou
+ */
+
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -11,6 +16,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JRadioButtonMenuItem;
+
 
 public class MenuBar extends JMenuBar {
 	

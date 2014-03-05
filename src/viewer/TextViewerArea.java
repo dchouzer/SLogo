@@ -2,6 +2,11 @@ package viewer;
 
 import javax.swing.*;
 
+/*
+ * @author Kat Krieger
+ * @author David Chou
+ */
+
 public class TextViewerArea extends JSplitPane{
 
 	protected JTextArea myOutput;

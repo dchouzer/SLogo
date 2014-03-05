@@ -1,4 +1,9 @@
 package viewer;
+
+/*
+ * @author David Chou
+ */
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Canvas;
@@ -38,8 +43,8 @@ public class TurtleViewer extends Component {
 	private double myXTransform;
 	private double myYTransform;
 	
-	public TurtleViewer(Turtle turtle, Dimension size){
-		
+	//Need to determine how to drawLines
+	public TurtleViewer(Turtle turtle, Dimension size){	
 		mySize = size;
 		myTurtle = turtle;
 		createImage();
@@ -59,6 +64,10 @@ public class TurtleViewer extends Component {
 		
 	}
 	
+	/*
+	 * Instantiates the turtle image based on what is located
+	 * within the gif.
+	 */
 	public void createImage() {
 		BufferedImage turtle;
 		try {
@@ -69,10 +78,16 @@ public class TurtleViewer extends Component {
 		}
 	}
 	
+	/*
+	 * Creates the lines based upon the current list of points
+	 * inside the turtle
+	 */
 	public List<Line2D.Double> createLines() {
 		List<Line2D.Double> list = new ArrayList<Line2D.Double>();
-		for (int i = 0; i < myPoints.size() - 1; i++) {
-			list.add(new Line2D.Double(myPoints.get(i), myPoints.get(i+1)));
+		if (myPoints.size() >= 2) {
+			for (int i = 0; i < myPoints.size() - 1; i++) {
+				list.add(new Line2D.Double(myPoints.get(i), myPoints.get(i+1)));
+			}
 		}
 		return list;
 	}
