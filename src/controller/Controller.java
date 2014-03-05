@@ -2,6 +2,7 @@ package controller;
 
 import program.Evaluator;
 import program.Parser;
+import viewer.AggregateViewer;
 import viewer.TextViewerArea;
 import viewer.TurtleViewer;
 
@@ -14,13 +15,12 @@ public class Controller {
 	
 	//private Map<Integer, Turtle> myTurtles;
 	private Parser myParser;
-	private TextViewerArea myTextViewer;
-	private TurtleViewer myTurtleViewer;
+	private AggregateViewer myCanvas;
+	
 	
 	public Controller () {
 		myParser = new Parser();
-		myTextViewer = new TextViewerArea(null, null);
-		myTurtleViewer = new TurtleViewer(null, null, null);
+		myCanvas = new AggregateViewer(this);
 	}
 	
 	public void execute(String program) throws Exception {
