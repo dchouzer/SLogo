@@ -22,12 +22,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 import controller.Controller;
 
 import model.Turtle;
 
-public class TurtleViewer extends Component {
+public class TurtleViewer extends JPanel {
 	
 	private String image;
 	private boolean isToggled = true;
@@ -36,7 +37,7 @@ public class TurtleViewer extends Component {
 	private Dimension mySize;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.BLACK;
 	private static final Color DEFAULT_PEN_COLOR = Color.WHITE;
-	private Graphics2D myTurtleImage = null;
+	private Graphics2D myTurtleImage;
 	private List<Point2D> myPoints;
 	private List<Line2D.Double> myLines;
 	//Need to transform the location of the image also
@@ -46,14 +47,18 @@ public class TurtleViewer extends Component {
 	
 	//Need to determine how to drawLines
 	public TurtleViewer(Turtle turtle, Dimension size, Controller controller){	
+		
 		myController = controller;
 		mySize = size;
+		setPreferredSize(size);
+		setBackground(DEFAULT_BACKGROUND_COLOR);
 		myTurtle = turtle;
 		createImage();
 		myPoints = myTurtle.getPen().getHistory();
 		myLines = createLines();
 		myXTransform = size.getWidth();
 		myYTransform = size.getHeight();
+		setVisible(true);
 	}
 	
 	/*

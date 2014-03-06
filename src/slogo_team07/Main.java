@@ -1,7 +1,7 @@
 package slogo_team07;
 
 import program.Parser;
-import viewer.TextViewerArea;
+import viewer.TopLeftView;
 import viewer.TurtleViewer;
 import controller.Controller;
 
