@@ -76,9 +76,9 @@ public class Controller {
 		return 0.0;
 	}
 	
-	public static double setPenColor(double index){
-		return index;
-	}
+	public void setPenColor(String color){
+		System.out.println("set to "+ color);
+		}
 	
 	public static double getPenColor(){
 		return 0;

@@ -35,7 +35,6 @@ public class AggregateViewer extends JFrame {
 	private JSplitPane myPanel;
 	private Controller myController;
 	private Dimension TOTAL_SIZE = new Dimension(1200, 800);
-
 	private Dimension TURTLE_SIZE = new Dimension(800, 600);
 	private Dimension TEXT_OUTPUT_SIZE = new Dimension(400, 250);
 	private Dimension PROGRAM_INPUT_SIZE = new Dimension(800, 300);
@@ -56,14 +55,14 @@ public class AggregateViewer extends JFrame {
 		JTextArea myOutput = new JTextArea(300, 100);
 		TurtleViewer myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, this);
 		TopLeftView textView = new TopLeftView(myCommands, myOutput);
-		TextInputArea myTextInput = new TextInputArea();
+		TextInputArea myTextInput = new TextInputArea(myController);
 		LeftView myUpperView = new LeftView(textView, myTextInput);
 		myPanel = new FullView(myUpperView, myGame);
 		
 		getContentPane().add(myPanel, BorderLayout.CENTER);
 		
 		// Set up the menuBar
-		setJMenuBar(new MenuBar());
+		setJMenuBar(new MenuBar(controller));
 		setSize(1200, 800);
 		// Make the JPanel visible
 		pack();
