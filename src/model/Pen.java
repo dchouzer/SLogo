@@ -64,5 +64,10 @@ public class Pen {
 	public List<Point2D> getHistory() {
 		return pointHistory;
 	}
+	
+	// TO DO!!!!
+	public void setColor(){
+		
+	}
 }
 
