@@ -3,7 +3,7 @@ package controller;
 import program.Evaluator;
 import program.Parser;
 import viewer.AggregateViewer;
-import viewer.TextViewerArea;
+import viewer.TopLeftView;
 import viewer.TurtleViewer;
 
 /**

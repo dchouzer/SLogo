@@ -21,40 +21,50 @@ import model.Turtle;
 
 import controller.Controller;
 
+/*
+ * @author Kat Krieger
+ * @author David Chou
+ */
+
 public class AggregateViewer extends JFrame {
-  
+
 	private Controller myController;
-	private Dimension TOTAL_SIZE = new Dimension(1200,800);
-	
-	private Dimension TURTLE_SIZE = new Dimension(800,600);
-	private Dimension TEXT_OUTPUT_SIZE = new Dimension(400,250);
-	private Dimension PROGRAM_INPUT_SIZE = new Dimension(800,300);
-	private Dimension COMPUTATION_SIZE = new Dimension(400,250);
-	
+	private Dimension TOTAL_SIZE = new Dimension(1200, 800);
+
+	private Dimension TURTLE_SIZE = new Dimension(800, 600);
+	private Dimension TEXT_OUTPUT_SIZE = new Dimension(400, 250);
+	private Dimension PROGRAM_INPUT_SIZE = new Dimension(800, 300);
+	private Dimension COMPUTATION_SIZE = new Dimension(400, 250);
+
 	private Turtle myTurtle;
-	
-	
-	
-	
+
 	public AggregateViewer(Controller controller) {
-			myController = controller;
-	        setTitle("sLogo");
-	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			JTextArea myCommands = new JTextArea(100,20);
-			JTextArea myOutput = new JTextArea(100,20);
-			TurtleViewer myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, myController); 
-			TextViewerArea textView = new TextViewerArea(myCommands, myOutput);
-	        UpperView myUpperView = new UpperView(textView, myGame);
-	        TextInputArea myTextInput = new TextInputArea();
-	        FullView fullView = new FullView(myTextInput, myUpperView);
-	        getContentPane().add(fullView, BorderLayout.CENTER);
-	        setJMenuBar(new MenuBar());
-	        pack();
-	        setVisible(true);
-//	        myController = controller;
+		//Basic instantiation
+		myTurtle = new Turtle(0, 0);
+		myController = controller;
+		setTitle("SLogo Turtle Simulator");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		
+		JTextArea myCommands = new JTextArea(300, 100);
+		JTextArea myOutput = new JTextArea(300, 100);
+
+		TurtleViewer myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, myController);
+
+		TopLeftView textView = new TopLeftView(myCommands, myOutput);
+		TextInputArea myTextInput = new TextInputArea();
+		LeftView myUpperView = new LeftView(textView, myTextInput);
+		
+		
+		FullView fullView = new FullView(myUpperView, myGame);
+		getContentPane().add(fullView, BorderLayout.CENTER);
+
+		// Set up the menuBar
+		setJMenuBar(new MenuBar());
+		setSize(1200, 800);
+		// Make the JPanel visible
+		pack();
+		setVisible(true);
 	}
-	 
-	 
-	 
-	
+
 }
