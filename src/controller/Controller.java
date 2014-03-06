@@ -75,5 +75,21 @@ public class Controller {
 	public static double getTurtleVisibility(){
 		return 0.0;
 	}
+	
+	public static double setPenColor(double index){
+		return index;
+	}
+	
+	public static double getPenColor(){
+		return 0;
+	}
+	
+	public static double setShape(double index){
+		return index;
+	}
+	
+	public static double getShape(){
+		return 0;
+	}
 
 }
