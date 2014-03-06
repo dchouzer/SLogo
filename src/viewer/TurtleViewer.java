@@ -7,6 +7,7 @@ package viewer;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Canvas;
+import java.awt.Graphics;
 import java.awt.Stroke;
 import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
@@ -37,13 +38,14 @@ public class TurtleViewer extends JPanel {
 	private Dimension mySize;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.BLACK;
 	private static final Color DEFAULT_PEN_COLOR = Color.WHITE;
-	private Graphics2D myTurtleImage;
+	private Graphics myTurtleImage;
 	private List<Point2D> myPoints;
 	private List<Line2D.Double> myLines;
 	//Need to transform the location of the image also
 	private double myXTransform;
 	private double myYTransform;
 	private Controller myController;
+	private BufferedImage turtleImageBuffer;
 	
 	//Need to determine how to drawLines
 	public TurtleViewer(Turtle turtle, Dimension size, Controller controller){	
@@ -76,15 +78,19 @@ public class TurtleViewer extends JPanel {
 	 * within the gif.
 	 */
 	public void createImage() {
-		BufferedImage turtle;
 		try {
-			turtle = ImageIO.read(new File("turtle.gif"));
-			myTurtleImage = (Graphics2D) turtle.getGraphics();
+			turtleImageBuffer = ImageIO.read(new File("turtle.gif"));
+			myTurtleImage = (Graphics2D) turtleImageBuffer.getGraphics();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	@Override
+	public void paintComponent(Graphics g) {
+	   super.paintComponent(g);
+	   g.drawImage(turtleImageBuffer, 0, 0, turtleImageBuffer.getWidth(), turtleImageBuffer.getHeight(), this);
+	}
 	/*
 	 * Creates the lines based upon the current list of points
 	 * inside the turtle
