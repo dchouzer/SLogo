@@ -47,7 +47,7 @@ public class TurtleViewer extends JPanel {
 	private int myAngle;
 	private AggregateViewer myCanvas;
 	private BufferedImage turtleImageBuffer;
-	private Graphics2D myTurtleImage;
+	private Graphics2D myPen;
 	private int myImageWidth;
 	private int myImageHeight;
 
@@ -83,12 +83,12 @@ public class TurtleViewer extends JPanel {
 	 * Rotates the image of the turtle
 	 */
 	public void rotate() {
-		AffineTransform temp = new AffineTransform(myTurtleImage.getTransform());
-		myTurtleImage.translate(myXTranslation, myYTranslation);
-		myTurtleImage.rotate(-myAngle);
-		myTurtleImage.drawImage(turtleImageBuffer, -myImageWidth,
+		AffineTransform temp = new AffineTransform(myPen.getTransform());
+		myPen.translate(myXTranslation, myYTranslation);
+		myPen.rotate(-myAngle);
+		myPen.drawImage(turtleImageBuffer, -myImageWidth,
 				-myImageHeight / 2, myImageWidth, myImageHeight, null);
-		myTurtleImage.setTransform(temp);
+		myPen.setTransform(temp);
 		revalidate();
 		repaint();
 	}
@@ -102,7 +102,7 @@ public class TurtleViewer extends JPanel {
 			turtleImageBuffer = ImageIO.read(new File("turtle.gif"));
 			myImageWidth = turtleImageBuffer.getWidth();
 			myImageHeight = turtleImageBuffer.getHeight();
-//			myTurtleImage = (Graphics2D) turtleImageBuffer.getGraphics();
+			myPen = (Graphics2D) turtleImageBuffer.getGraphics();
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -140,7 +140,9 @@ public class TurtleViewer extends JPanel {
 	 * Turns lines from the Line2D list into visuals
 	 */
 	public void drawLines() {
-		
+		for (Line2D.Double l : myLines) {
+			myPen.drawLine((int) l.getX1(), (int) l.getY1(), (int) l.getX2(), (int) l.getY2());
+		}
 	}
 
 }
