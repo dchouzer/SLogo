@@ -66,8 +66,8 @@ public class Pen {
 	}
 	
 	// TO DO!!!!
-	public void setColor(){
-		
+	public void setColor(String color){
+		System.out.println("set the color to " + color);
 	}
 }
 
