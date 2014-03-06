@@ -8,13 +8,16 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
+import java.util.Random;
 
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 import model.Turtle;
@@ -28,6 +31,8 @@ import controller.Controller;
 
 public class AggregateViewer extends JFrame {
 
+	private JFrame myFrame;
+	private JSplitPane myPanel;
 	private Controller myController;
 	private Dimension TOTAL_SIZE = new Dimension(1200, 800);
 
@@ -42,23 +47,21 @@ public class AggregateViewer extends JFrame {
 		//Basic instantiation
 		myTurtle = new Turtle(0, 0);
 		myController = controller;
+		myPanel = new JSplitPane();
 		setTitle("SLogo Turtle Simulator");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
 		JTextArea myCommands = new JTextArea(300, 100);
 		JTextArea myOutput = new JTextArea(300, 100);
-
-		TurtleViewer myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, myController);
-
+		TurtleViewer myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, this);
 		TopLeftView textView = new TopLeftView(myCommands, myOutput);
 		TextInputArea myTextInput = new TextInputArea();
 		LeftView myUpperView = new LeftView(textView, myTextInput);
+		myPanel = new FullView(myUpperView, myGame);
 		
+		getContentPane().add(myPanel, BorderLayout.CENTER);
 		
-		FullView fullView = new FullView(myUpperView, myGame);
-		getContentPane().add(fullView, BorderLayout.CENTER);
-
 		// Set up the menuBar
 		setJMenuBar(new MenuBar());
 		setSize(1200, 800);
@@ -66,5 +69,11 @@ public class AggregateViewer extends JFrame {
 		pack();
 		setVisible(true);
 	}
+	
+	public void update () {
+        Random rand = new Random();
+        myPanel.setSize(TOTAL_SIZE);
+        validate();
+    }
 
 }

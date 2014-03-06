@@ -10,6 +10,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Stroke;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
@@ -30,7 +31,7 @@ import controller.Controller;
 import model.Turtle;
 
 public class TurtleViewer extends JPanel {
-	
+
 	private String image;
 	private boolean isToggled = true;
 	private boolean penDown = true;
@@ -38,19 +39,22 @@ public class TurtleViewer extends JPanel {
 	private Dimension mySize;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.BLACK;
 	private static final Color DEFAULT_PEN_COLOR = Color.WHITE;
-	private Graphics myTurtleImage;
 	private List<Point2D> myPoints;
 	private List<Line2D.Double> myLines;
-	//Need to transform the location of the image also
-	private double myXTransform;
-	private double myYTransform;
-	private Controller myController;
+	// Need to transform the location of the image also
+	private int myXTranslation;
+	private int myYTranslation;
+	private int myAngle;
+	private AggregateViewer myCanvas;
 	private BufferedImage turtleImageBuffer;
-	
-	//Need to determine how to drawLines
-	public TurtleViewer(Turtle turtle, Dimension size, Controller controller){	
-		
-		myController = controller;
+	private Graphics2D myTurtleImage;
+	private int myImageWidth;
+	private int myImageHeight;
+
+	// Need to determine how to drawLines
+	public TurtleViewer(Turtle turtle, Dimension size, AggregateViewer canvas) {
+
+		myCanvas = canvas;
 		mySize = size;
 		setPreferredSize(size);
 		setBackground(DEFAULT_BACKGROUND_COLOR);
@@ -58,56 +62,85 @@ public class TurtleViewer extends JPanel {
 		createImage();
 		myPoints = myTurtle.getPen().getHistory();
 		myLines = createLines();
-		myXTransform = size.getWidth();
-		myYTransform = size.getHeight();
+		myXTranslation = (int) size.getWidth() / 2;
+		myYTranslation = (int) size.getHeight() / 2;
+		myAngle = (int) myTurtle.getAngle();
+
 		setVisible(true);
+		update();
 	}
-	
+
 	/*
-	 * Allows for:
-	 * -rotations
-	 * -moves
-	 * -trail drawing
+	 * Allows for: -rotations -moves -trail drawing
 	 */
 	public void update() {
-		
+		repaint();
+		revalidate();
+		myCanvas.update();
 	}
-	
+
 	/*
-	 * Instantiates the turtle image based on what is located
-	 * within the gif.
+	 * Rotates the image of the turtle
+	 */
+	public void rotate() {
+		AffineTransform temp = new AffineTransform(myTurtleImage.getTransform());
+		myTurtleImage.translate(myXTranslation, myYTranslation);
+		myTurtleImage.rotate(-myAngle);
+		myTurtleImage.drawImage(turtleImageBuffer, -myImageWidth,
+				-myImageHeight / 2, myImageWidth, myImageHeight, null);
+		myTurtleImage.setTransform(temp);
+		revalidate();
+		repaint();
+	}
+
+	/*
+	 * Instantiates the turtle image based on what is located within the gif.
+	 * Allows for updates of the turtle image.
 	 */
 	public void createImage() {
 		try {
 			turtleImageBuffer = ImageIO.read(new File("turtle.gif"));
-			myTurtleImage = (Graphics2D) turtleImageBuffer.getGraphics();
+			myImageWidth = turtleImageBuffer.getWidth();
+			myImageHeight = turtleImageBuffer.getHeight();
+//			myTurtleImage = (Graphics2D) turtleImageBuffer.getGraphics();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
+
+	// Also need to make it so that we can paint strokes
 	@Override
 	public void paintComponent(Graphics g) {
-	   super.paintComponent(g);
-	   g.drawImage(turtleImageBuffer, 0, 0, turtleImageBuffer.getWidth(), turtleImageBuffer.getHeight(), this);
+		super.paintComponent(g);
+		g.drawImage(turtleImageBuffer, (int) myTurtle.getX() + myXTranslation,
+				(int) myTurtle.getY() + myYTranslation, this);
 	}
+
 	/*
-	 * Creates the lines based upon the current list of points
-	 * inside the turtle
+	 * Adds a list of lines to be drawn
 	 */
 	public List<Line2D.Double> createLines() {
 		List<Line2D.Double> list = new ArrayList<Line2D.Double>();
 		if (myPoints.size() >= 2) {
 			for (int i = 0; i < myPoints.size() - 1; i++) {
-				list.add(new Line2D.Double(myPoints.get(i), myPoints.get(i+1)));
+				list.add(new Line2D.Double(myPoints.get(i), myPoints.get(i + 1)));
 			}
 		}
 		return list;
 	}
 	
-	public String getImage(){
-		String image;
-		image = "turtle";
-		return image;
+	/*
+	 * Turns lines from the Line2D list into visuals
+	 */
+	public void drawLines() {
+		
 	}
+
 }
