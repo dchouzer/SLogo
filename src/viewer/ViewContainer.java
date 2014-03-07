@@ -2,6 +2,7 @@ package viewer;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.HashMap;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -15,10 +16,12 @@ public class ViewContainer extends JFrame {
 	private Controller myController;
 	private JTabbedPane tabbedPane;
 	private AggregateViewer panel1;
+	private AggregateViewer panel2;
+	private HashMap<Integer, AggregateViewer> tabs;
 	public ViewContainer(Controller controller){
 		tabbedPane = new JTabbedPane();
 		myController = controller;
-		createTab("First Tab", "");
+		createTab("Second Tab", "");
 		setJMenuBar(new MenuBar(myController));
 		setSize(1200, 800);
 		pack();
@@ -26,7 +29,7 @@ public class ViewContainer extends JFrame {
 	}
 	
 	private void createTab(String str, String str2){
-		 panel1 = new AggregateViewer(myController);
+		panel1 = new AggregateViewer(myController);
 		tabbedPane.addTab(str, null, panel1, str2);
 		add(tabbedPane);
 	}

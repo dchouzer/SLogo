@@ -96,6 +96,7 @@ public class Controller {
 	}
 	
 	public void setTurtleImage(String str){
+		System.out.println("made itrr");
 		myCanvas.setTurtleImage(str);
 		System.out.println("made itrr");
 	}

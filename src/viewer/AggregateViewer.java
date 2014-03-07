@@ -21,7 +21,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 import model.Turtle;
-
 import controller.Controller;
 
 /**
@@ -71,9 +70,12 @@ public class AggregateViewer extends JPanel {
         Random rand = new Random();
         myPanel.setSize(TOTAL_SIZE);
         validate();
+        repaint();
     }
 
 	public void setTurtleImage(String str){
+		System.out.println("made it?");
 		myGame.setImage(str);
+		System.out.println("made it?");
 	}
 }

@@ -156,6 +156,7 @@ public class TurtleViewer extends JPanel {
 		System.out.println("made it");
 		createImage();
 		revalidate();
+		repaint();
 	}
 
 }
