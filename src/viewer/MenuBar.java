@@ -11,7 +11,10 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
@@ -27,10 +30,13 @@ import controller.Controller;
 
 
 public class MenuBar extends JMenuBar {
-	HashMap<String,String> colors;
-	HashMap<String,String> turtles;
-	Controller myController;
-	Turtle myTurtle;
+	private HashMap<String,String> colors;
+	private HashMap<String,String> turtles;
+	private Controller myController;
+	private Turtle myTurtle;
+	public static final String DEFAULT_TURTLES = "resources/turtles";
+	public static final String DEFAULT_COLORS = "resources/colors";
+			
 	public MenuBar(Controller controller) {
 		myController = controller;
 		colors = new HashMap<String, String>();
@@ -172,20 +178,47 @@ public class MenuBar extends JMenuBar {
 	}
 
 	private void createMaps(){
-		colors.put("Yellow", "Yellow");
-		colors.put("Red", "Red");
-		colors.put("Blue", "Blue");
-		colors.put("Black", "Black");
-		turtles.put("Default Turtle", "turtle.gif");
-		turtles.put("Color Turtle", "colorTurtle.gif");
+//		colors.put("Yellow", "Yellow");
+//		colors.put("Red", "Red");
+//		colors.put("Blue", "Blue");
+//		colors.put("Black", "Black");
+//		turtles.put("Default Turtle", "turtle.gif");
+//		turtles.put("Color Turtle", "colorTurtle.gif");
+		colors = createColorMap();
+		turtles = createTurtleMap();
 
 	}
 	
-	private void createColorMap() {
-		
+	private HashMap<String, String> createColorMap() {
+		HashMap<String, String> colors = new HashMap<String, String>();
+		ResourceBundle resources = ResourceBundle.getBundle(DEFAULT_COLORS);
+		Enumeration <String> iter = resources.getKeys();
+		while (iter.hasMoreElements()) {
+			try {
+				String color = iter.nextElement();
+				colors.put(color, resources.getString(color));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return colors;
 	}
 	
-	private void createTurtleMap() {
-		
+	private HashMap<String, String> createTurtleMap() {
+		HashMap<String, String> turtles = new HashMap<String, String>();
+		ResourceBundle resources = ResourceBundle.getBundle(DEFAULT_TURTLES);
+		Enumeration <String> iter = resources.getKeys();
+		while (iter.hasMoreElements()) {
+			try {
+				String turtle = iter.nextElement();
+				turtles.put(turtle, resources.getString(turtle));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		for (String s : turtles.keySet()) {
+			System.out.println(s + ": " + turtles.get(s));
+		}
+		return turtles;
 	}
 }
