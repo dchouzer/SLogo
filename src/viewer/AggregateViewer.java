@@ -21,7 +21,6 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 import model.Turtle;
-
 import controller.Controller;
 
 /**
@@ -52,7 +51,6 @@ public class AggregateViewer extends JPanel {
 		myPanel.setLayout(new BorderLayout());
 		//setTitle("SLogo Turtle Simulator");
 	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		String str = "asdf";
 
 		
 		JTextArea myCommands = new JTextArea(300, 100);
@@ -75,6 +73,7 @@ public class AggregateViewer extends JPanel {
     }
 
 	public void setTurtleImage(String str){
+		System.out.println("made 1 it");
 		myGame.setImage(str);
 	}
 }

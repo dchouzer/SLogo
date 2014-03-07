@@ -14,10 +14,10 @@ import controller.Controller;
 public class ViewContainer extends JFrame {
 	private Controller myController;
 	private JTabbedPane tabbedPane;
-	
-	public ViewContainer(Controller Controller){
+	private AggregateViewer panel1;
+	public ViewContainer(Controller controller){
 		tabbedPane = new JTabbedPane();
-		createTab("First Tab", "");
+		myController = controller;
 		createTab("First Tab", "");
 		setJMenuBar(new MenuBar(myController));
 		setSize(1200, 800);
@@ -26,9 +26,12 @@ public class ViewContainer extends JFrame {
 	}
 	
 	private void createTab(String str, String str2){
-		AggregateViewer panel1 = new AggregateViewer(myController);
+		 panel1 = new AggregateViewer(myController);
 		tabbedPane.addTab(str, null, panel1, str2);
 		add(tabbedPane);
+	}
+	public void setTurtleImage(String str){
+		panel1.setTurtleImage(str);
 	}
 	
 }

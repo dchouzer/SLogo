@@ -13,6 +13,7 @@ import viewer.ViewContainer;
 /**
  * @author Richard Cao
  * @author jerrysmooth
+ * @author katharinekrieger
  */
 
 public class Controller extends JPanel {
@@ -81,9 +82,8 @@ public class Controller extends JPanel {
 		return 0.0;
 	}
 	
-	public static double setPenColor(double myAmount){
-		System.out.println("set to "+ myAmount);
-		return myAmount;
+	public void setPenColor(String string){
+		System.out.println("set to "+ string);
 		}
 	
 	public static double getPenColor(){
@@ -99,7 +99,8 @@ public class Controller extends JPanel {
 	}
 	
 	public void setTurtleImage(String str){
-		//myCanvas.setTurtleImage(str);
+		myCanvas.setTurtleImage(str);
+		System.out.println("made itrr");
 	}
 
 }

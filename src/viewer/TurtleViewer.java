@@ -106,10 +106,12 @@ public class TurtleViewer extends JPanel {
 			myImageWidth = turtleImageBuffer.getWidth();
 			myImageHeight = turtleImageBuffer.getHeight();
 			myPen = (Graphics2D) turtleImageBuffer.getGraphics();
-
+			revalidate();
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		revalidate();
 	}
 
 	/*
@@ -152,6 +154,7 @@ public class TurtleViewer extends JPanel {
 		TurtleImage = str;
 		System.out.println("made it");
 		createImage();
+		revalidate();
 	}
 
 }
