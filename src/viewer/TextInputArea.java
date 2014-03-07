@@ -2,8 +2,10 @@ package viewer;
 
 import java.awt.Dimension;
 import java.awt.event.*;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
@@ -17,7 +19,7 @@ public class TextInputArea extends JPanel {
 
 	public TextInputArea(Controller controller) {
 		myController = controller;
-		setPreferredSize(new Dimension(200,100));
+		setPreferredSize(new Dimension(200, 100));
 		textArea = createTextArea();
 		add(textArea);
 		add(createButton("Execute"));
@@ -27,12 +29,11 @@ public class TextInputArea extends JPanel {
 		JButton button = new JButton(str);
 		button.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e){
-				try{
+			public void actionPerformed(ActionEvent e) {
+				try {
 					myController.execute(textArea.getText());
-				}
-				catch (Exception k) {
-					//show error
+				} catch (Exception k) {
+					// show error
 				}
 				textArea.setText("");
 			}
@@ -44,36 +45,57 @@ public class TextInputArea extends JPanel {
 		JTextArea text = new JTextArea(20, 25);
 		return text;
 	}
-	
+
 	public void save() {
 		String myText = this.textArea.getText();
 		JFileChooser chooser = new JFileChooser();
-		chooser.setCurrentDirectory( new File( "./") );
-        int actionDialog = chooser.showSaveDialog(this);
-        if (actionDialog == JFileChooser.APPROVE_OPTION)
-        {
-            File fileName = new File(chooser.getSelectedFile( ) + "" );
-            if(fileName == null)
-                return;
-            if(fileName.exists())
-            {
-                actionDialog = JOptionPane.showConfirmDialog(this,
-                                   "Replace existing file?");
-                if (actionDialog == JOptionPane.NO_OPTION)
-                    return;
-            }
-            try
-            {
-                BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
+		chooser.setCurrentDirectory(new File("./"));
+		int actionDialog = chooser.showSaveDialog(this);
+		if (actionDialog == JFileChooser.APPROVE_OPTION) {
+			File fileName = new File(chooser.getSelectedFile() + "");
+			if (fileName == null)
+				return;
+			if (fileName.exists()) {
+				actionDialog = JOptionPane.showConfirmDialog(this,
+						"Replace existing file?");
+				if (actionDialog == JOptionPane.NO_OPTION)
+					return;
+			}
+			try {
+				BufferedWriter out = new BufferedWriter(
+						new FileWriter(fileName));
 
-                    out.write(myText);
-                    out.close();
-            }
-            catch(Exception e)
-            {
-                 System.err.println("Error: " + e.getMessage());
-            }
-        }
+				out.write(myText);
+				out.close();
+			} catch (Exception e) {
+				System.err.println("Error: " + e.getMessage());
+			}
+		}
 	}
-	
+
+	public void load() {
+		JFileChooser chooser = new JFileChooser();
+		chooser.setCurrentDirectory(new File("./"));
+		int actionDialog = chooser.showOpenDialog(this);
+		if (actionDialog == JFileChooser.APPROVE_OPTION) {
+			File fileName = new File(chooser.getSelectedFile() + "");
+			if (fileName == null)
+				return;
+			try {
+
+				String strLine;
+				File f = chooser.getSelectedFile();
+				BufferedReader br = new BufferedReader(new FileReader(f));
+
+				while ((strLine = br.readLine()) != null) {
+					textArea.append(strLine + "\n");
+					System.out.println(strLine);
+
+				}
+			} catch (Exception e) {
+				System.err.println("Error: " + e.getMessage());
+			}
+		}
+	}
+
 }

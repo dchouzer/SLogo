@@ -105,4 +105,9 @@ public class Controller {
 		myCanvas.saveCommandsToFile();
 	}
 
+	public void loadCommandsToText() {
+		myCanvas.loadCommandsToText();
+		
+	}
+
 }
