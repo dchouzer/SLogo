@@ -166,4 +166,12 @@ public class MenuBar extends JMenuBar {
 		turtles.put("Color Turtle", "colorTurtle.gif");
 
 	}
+	
+	private void createColorMap() {
+		
+	}
+	
+	private void createTurtleMap() {
+		
+	}
 }

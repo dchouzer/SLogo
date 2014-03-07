@@ -80,7 +80,7 @@ public class Controller {
 	
 	public void setPenColor(String string){
 		System.out.println("set to "+ string);
-		}
+	}
 	
 	public static double getPenColor(){
 		return 0;
