@@ -18,10 +18,14 @@ public class ViewContainer extends JFrame {
 	private AggregateViewer panel1;
 	private AggregateViewer panel2;
 	private HashMap<Integer, AggregateViewer> tabs;
+	private int tabIndex;
 	public ViewContainer(Controller controller){
+		tabIndex = 0;
 		tabbedPane = new JTabbedPane();
 		myController = controller;
-		createTab("Second Tab", "");
+		tabs = new HashMap<Integer, AggregateViewer>();
+		createTab("Slogo Workspace", "");
+		createTab("Slogo Workspace", "");
 		setJMenuBar(new MenuBar(myController));
 		setSize(1200, 800);
 		pack();
@@ -29,12 +33,15 @@ public class ViewContainer extends JFrame {
 	}
 	
 	private void createTab(String str, String str2){
-		panel1 = new AggregateViewer(myController);
-		tabbedPane.addTab(str, null, panel1, str2);
+		AggregateViewer panel = new AggregateViewer(myController);
+		tabbedPane.addTab(str, null, panel, str2);
+		tabs.put(tabIndex, panel);
+		tabIndex++;
 		add(tabbedPane);
 	}
+	
 	public void setTurtleImage(String str){
-		panel1.setTurtleImage(str);
+		tabs.get(tabbedPane.getSelectedIndex()).setTurtleImage(str);
 	}
 	
 }
