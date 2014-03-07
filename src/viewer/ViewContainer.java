@@ -39,14 +39,19 @@ public class ViewContainer extends JFrame {
 		add(tabbedPane);
 	}
 	
-	public void removeTab(Integer index){
+	public void removeTab(){
+		Integer index = tabbedPane.getSelectedIndex();
 		tabbedPane.remove(index);
 		tabs.remove(index);
+		tabIndex --;
 		for(int i=0; i<=tabs.size(); i++){
+			System.out.println("if " + i + "is greater than the deleted index " + index + "otu of " + tabs.size() );
 			if(i > index){
 				if(tabs.containsKey(i)){
 					AggregateViewer panel = tabs.get(i);
+					System.out.println("if " + i + "is greater than the deleted index " + index );
 					tabs.put(i-1, panel);
+
 				}
 			}
 		}
@@ -54,6 +59,7 @@ public class ViewContainer extends JFrame {
 	
 	public void setTurtleImage(String str){
 		tabs.get(tabbedPane.getSelectedIndex()).setTurtleImage(str);
+		System.out.println(tabbedPane.getSelectedIndex());
 	}
 	
 	public void saveCommandsToFile(){

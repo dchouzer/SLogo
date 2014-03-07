@@ -113,5 +113,7 @@ public class Controller {
 	public void addTab(){
 		myCanvas.createTab();
 	}
-
+	public void removeTab(){
+		myCanvas.removeTab();
+	}
 }
