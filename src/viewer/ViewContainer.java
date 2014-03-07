@@ -45,11 +45,9 @@ public class ViewContainer extends JFrame {
 		tabs.remove(index);
 		tabIndex --;
 		for(int i=0; i<=tabs.size(); i++){
-			System.out.println("if " + i + "is greater than the deleted index " + index + "otu of " + tabs.size() );
 			if(i > index){
 				if(tabs.containsKey(i)){
 					AggregateViewer panel = tabs.get(i);
-					System.out.println("if " + i + "is greater than the deleted index " + index );
 					tabs.put(i-1, panel);
 
 				}
