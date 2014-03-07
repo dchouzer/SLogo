@@ -52,7 +52,7 @@ public class TurtleViewer extends JPanel {
 		setPreferredSize(size);
 		setBackground(DEFAULT_BACKGROUND_COLOR);
 		myTurtle = turtle;
-		TurtleImage = "colorTurtle.gif";
+		TurtleImage = "turtle.gif";
 		createImage();
 		myPoints = myTurtle.getPen().getHistory();
 		myLines = createLines();
