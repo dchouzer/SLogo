@@ -39,6 +39,7 @@ public class TurtleViewer extends JPanel {
 	private Dimension mySize;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.BLACK;
 	private static final Color DEFAULT_PEN_COLOR = Color.WHITE;
+	private static final String DEFAULT_RESOURCE_PACKAGE = "images/";
 	private List<Point2D> myPoints;
 	private List<Line2D.Double> myLines;
 	// Need to transform the location of the image also
@@ -60,7 +61,7 @@ public class TurtleViewer extends JPanel {
 		setPreferredSize(size);
 		setBackground(DEFAULT_BACKGROUND_COLOR);
 		myTurtle = turtle;
-		TurtleImage = "turtle.gif";
+		TurtleImage = "colorTurtle.gif";
 		createImage();
 		myPoints = myTurtle.getPen().getHistory();
 		myLines = createLines();

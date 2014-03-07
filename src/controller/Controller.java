@@ -1,14 +1,10 @@
 package controller;
 
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-
 import program.Evaluator;
 import program.Parser;
 import viewer.AggregateViewer;
 import viewer.TopLeftView;
 import viewer.TurtleViewer;
-import viewer.ViewContainer;
 
 /**
  * @author Richard Cao
@@ -16,17 +12,16 @@ import viewer.ViewContainer;
  * @author katharinekrieger
  */
 
-public class Controller extends JPanel {
+public class Controller {
 	
 	//private Map<Integer, Turtle> myTurtles;
 	private Parser myParser;
-	private ViewContainer myCanvas;
-	private JTabbedPane myTabbedPane;
+	private AggregateViewer myCanvas;
+	
 	
 	public Controller () {
 		myParser = new Parser();
-		myCanvas = new ViewContainer(this);
-
+		myCanvas = new AggregateViewer(this);
 	}
 	
 	public void execute(String program) throws Exception {
@@ -82,6 +77,7 @@ public class Controller extends JPanel {
 		return 0.0;
 	}
 	
+
 	public void setPenColor(String string){
 		System.out.println("set to "+ string);
 		}
