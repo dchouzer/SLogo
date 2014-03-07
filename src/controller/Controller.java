@@ -76,8 +76,7 @@ public class Controller {
 		return 0.0;
 	}
 	
-	public static String
-	setPenColor(String string){
+	public static String setPenColor(String string){
 		System.out.println("set to "+ string);
 		return string;
 		}

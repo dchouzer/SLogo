@@ -19,25 +19,69 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JRadioButtonMenuItem;
 
+import model.Turtle;
 import controller.Controller;
 
 
 
 public class MenuBar extends JMenuBar {
 	HashMap<String,String> colors;
+	HashMap<String,String> turtles;
 	Controller myController;
+	Turtle myTurtle;
 	public MenuBar(Controller controller) {
 		myController = controller;
 		colors = new HashMap<String, String>();
+		turtles = new HashMap<String, String>();
 		createMaps();
+		this.add(createFileMenu());
+		this.add(createTurtleImageMenu());
+		this.add(createBackgroundMenu());
 		this.add(createColorMenu());
 		this.add(createHelpMenu());
 
 	}
 
+	private JMenu createFileMenu(){
+		JMenu menu = new JMenu("File");
+		
+		return menu;
+	}
+	
+	private JMenu createBackgroundMenu(){
+		JMenu menu = new JMenu("Choose Background Color");
+		
+		return menu;
+	}
+	
+	private JMenu createTurtleImageMenu(){
+		JMenu menu = new JMenu("Choose Turtle Image");
+		ButtonGroup group = new ButtonGroup();
+		JRadioButtonMenuItem rbMenuItem;
+		boolean defaultValue = true;
+		for(final String turtle : turtles.keySet()){
+			rbMenuItem = new JRadioButtonMenuItem(turtle);
+			rbMenuItem.setSelected(defaultValue);
+			rbMenuItem.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed (ActionEvent e){
+					try{
+						myController.setTurtleImage(turtles.get(turtle));
+					}
+					catch (Exception k) {
+						
+					}
+				}
+			});
+			group.add(rbMenuItem);
+			menu.add(rbMenuItem);
+			defaultValue = false;
+		}
+		return menu;
+	}
+	
 	private JMenu createColorMenu(){
 		JMenu menu = new JMenu("Choose Pen Color");
-		menu.setMnemonic(KeyEvent.VK_A);
 		ButtonGroup group = new ButtonGroup();
 		JRadioButtonMenuItem rbMenuItem;
 		boolean defaultValue = true;
@@ -90,5 +134,8 @@ public class MenuBar extends JMenuBar {
 		colors.put("Red", "Red");
 		colors.put("Blue", "Blue");
 		colors.put("Black", "Black");
+		turtles.put("Default Turtle", "turtle.gif");
+		turtles.put("Color Turtle", "colorTurtle.gif");
+
 	}
 }

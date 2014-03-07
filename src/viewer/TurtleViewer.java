@@ -51,6 +51,7 @@ public class TurtleViewer extends JPanel {
 	private Graphics2D myPen;
 	private int myImageWidth;
 	private int myImageHeight;
+	private String TurtleImage;
 
 	// Need to determine how to drawLines
 	public TurtleViewer(Turtle turtle, Dimension size, AggregateViewer canvas) {
@@ -60,12 +61,14 @@ public class TurtleViewer extends JPanel {
 		setPreferredSize(size);
 		setBackground(DEFAULT_BACKGROUND_COLOR);
 		myTurtle = turtle;
+		TurtleImage = "colorTurtle.gif";
 		createImage();
 		myPoints = myTurtle.getPen().getHistory();
 		myLines = createLines();
 		myXTranslation = (int) size.getWidth() / 2;
 		myYTranslation = (int) size.getHeight() / 2;
 		myAngle = (int) myTurtle.getAngle();
+
 
 		setVisible(true);
 		update();
@@ -100,7 +103,7 @@ public class TurtleViewer extends JPanel {
 	 */
 	public void createImage() {
 		try {
-			turtleImageBuffer = ImageIO.read(new File(DEFAULT_RESOURCE_PACKAGE + "turtle.gif"));
+			turtleImageBuffer = ImageIO.read(new File(TurtleImage));
 			myImageWidth = turtleImageBuffer.getWidth();
 			myImageHeight = turtleImageBuffer.getHeight();
 			myPen = (Graphics2D) turtleImageBuffer.getGraphics();
@@ -144,6 +147,12 @@ public class TurtleViewer extends JPanel {
 		for (Line2D.Double l : myLines) {
 			myPen.drawLine((int) l.getX1(), (int) l.getY1(), (int) l.getX2(), (int) l.getY2());
 		}
+	}
+	
+	public void setImage(String str){
+		TurtleImage = str;
+		System.out.println("made it");
+		createImage();
 	}
 
 }
