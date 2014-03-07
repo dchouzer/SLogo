@@ -31,7 +31,7 @@ public class ViewContainer extends JFrame {
 		setVisible(true);
 	}
 	
-	private void createTab(){
+	public void createTab(){
 		AggregateViewer panel = new AggregateViewer(myController);
 		tabbedPane.addTab("SLogo Workspace", null, panel, "SLogo Workspace");
 		tabs.put(tabIndex, panel);
@@ -39,7 +39,7 @@ public class ViewContainer extends JFrame {
 		add(tabbedPane);
 	}
 	
-	private void removeTab(Integer index){
+	public void removeTab(Integer index){
 		tabbedPane.remove(index);
 		tabs.remove(index);
 		for(int i=0; i<=tabs.size(); i++){

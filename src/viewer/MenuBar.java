@@ -18,6 +18,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 
 import model.Turtle;
@@ -46,7 +47,7 @@ public class MenuBar extends JMenuBar {
 	private JMenu createFileMenu(){
 		JMenu menu = new JMenu("File");
 		//Add save button
-		JButton saveButton = new JButton("Save");
+		JMenuItem saveButton = new JMenuItem("Save");
 		saveButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e){
@@ -60,7 +61,7 @@ public class MenuBar extends JMenuBar {
 		});
 		menu.add(saveButton);
 		//Add load button
-		JButton loadButton = new JButton("Load");
+		JMenuItem loadButton = new JMenuItem("Load");
 		loadButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e){
@@ -73,6 +74,19 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 		menu.add(loadButton);
+		JMenuItem addTabButton = new JMenuItem("Add Workspace");
+		addTabButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e){
+				try{
+					myController.addTab();
+				}
+				catch (Exception k){
+					
+				}
+			}
+		});
+		menu.add(addTabButton);
 		return menu;
 	}
 	

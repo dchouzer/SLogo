@@ -109,5 +109,9 @@ public class Controller {
 		myCanvas.loadCommandsToText();
 		
 	}
+	
+	public void addTab(){
+		myCanvas.createTab();
+	}
 
 }
