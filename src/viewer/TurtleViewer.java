@@ -16,24 +16,25 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.text.MessageFormat.Field;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import model.Turtle;
 
 public class TurtleViewer extends JPanel {
 
-	private String image;
-	private boolean isToggled = true;
-	private boolean penDown = true;
 	private Turtle myTurtle;
 	private Dimension mySize;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.BLACK;
 	private static final Color DEFAULT_PEN_COLOR = Color.WHITE;
+	private static final String DEFAULT_COLORS = "resources/colors";
 	private List<Point2D> myPoints;
 	private List<Line2D.Double> myLines;
-	// Need to transform the location of the image also
 	private int myXTranslation;
 	private int myYTranslation;
 	private int myAngle;
@@ -43,6 +44,7 @@ public class TurtleViewer extends JPanel {
 	private int myImageWidth;
 	private int myImageHeight;
 	private String TurtleImage;
+	private HashMap<String, Color> myPenColors;
 
 	// Need to determine how to drawLines
 	public TurtleViewer(Turtle turtle, Dimension size, AggregateViewer canvas) {
@@ -60,7 +62,7 @@ public class TurtleViewer extends JPanel {
 		myYTranslation = (int) size.getHeight() / 2;
 		myAngle = (int) myTurtle.getAngle();
 		myPen.setColor(DEFAULT_PEN_COLOR);
-
+		myPenColors = createPenColorMap();
 		setVisible(true);
 		update();
 	}
@@ -81,8 +83,8 @@ public class TurtleViewer extends JPanel {
 		AffineTransform temp = new AffineTransform(myPen.getTransform());
 		myPen.translate(myXTranslation, myYTranslation);
 		myPen.rotate(-myAngle);
-		myPen.drawImage(turtleImageBuffer, -myImageWidth,
-				-myImageHeight / 2, myImageWidth, myImageHeight, null);
+		myPen.drawImage(turtleImageBuffer, -myImageWidth, -myImageHeight / 2,
+				myImageWidth, myImageHeight, null);
 		myPen.setTransform(temp);
 		revalidate();
 		repaint();
@@ -99,7 +101,7 @@ public class TurtleViewer extends JPanel {
 			myImageHeight = turtleImageBuffer.getHeight();
 			myPen = (Graphics2D) turtleImageBuffer.getGraphics();
 			revalidate();
-		
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -132,26 +134,44 @@ public class TurtleViewer extends JPanel {
 		}
 		return list;
 	}
-	
+
 	/*
 	 * Turns lines from the Line2D list into visuals
 	 */
 	public void drawLines() {
 		for (Line2D.Double l : myLines) {
-			myPen.drawLine((int) l.getX1(), (int) l.getY1(), (int) l.getX2(), (int) l.getY2());
+			myPen.drawLine((int) l.getX1(), (int) l.getY1(), (int) l.getX2(),
+					(int) l.getY2());
 		}
 	}
-	
-	public void setImage(String str){
+
+	public void setImage(String str) {
 		TurtleImage = str;
 		System.out.println("made it");
 		createImage();
 		revalidate();
 		repaint();
 	}
-	
-	public void changePenColor() {
-		
+
+	public HashMap<String, Color> createPenColorMap() {
+		HashMap<String, Color> colors = new HashMap<String, Color>();
+		ResourceBundle resources = ResourceBundle.getBundle(DEFAULT_COLORS);
+		Enumeration<String> iter = resources.getKeys();
+		while (iter.hasMoreElements()) {
+			try {
+				String key = iter.nextElement();
+				java.lang.reflect.Field field = Class.forName("java.awt.Color")
+						.getField(resources.getString(key).toLowerCase());
+				colors.put(key, (Color) field.get(null));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return colors;
+	}
+
+	public void setPenColor(String s) {
+		myPen.setColor(myPenColors.get(s));
 	}
 
 }

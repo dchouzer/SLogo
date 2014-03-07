@@ -70,6 +70,11 @@ public class ViewContainer extends JFrame {
 		tabs.get(tabbedPane.getSelectedIndex()).loadCommandsToText();
 		
 	}
+
+	public void setPenColor(String string) {
+		tabs.get(tabbedPane.getSelectedIndex()).setPenColor(string);
+		
+	}
 	
 }
 

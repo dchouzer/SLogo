@@ -88,4 +88,9 @@ public class AggregateViewer extends JPanel {
 		myTextInput.load();
 		
 	}
+
+	public void setPenColor(String string) {
+		myGame.setPenColor(string);
+		
+	}
 }
