@@ -81,7 +81,7 @@ public class Controller {
 	}
 	
 	public void setPenColor(String string){
-		System.out.println("set to "+ string);
+		myCanvas.setPenColor(string);
 	}
 	
 	public static double getPenColor(){

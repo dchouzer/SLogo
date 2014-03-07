@@ -93,5 +93,11 @@ public class AggregateViewer extends JPanel {
 	
 	public void addCommandToList(String str){
 		textView.addCommandToList(str);
+
+	}
+	
+	public void setPenColor(String string) {
+		myGame.setPenColor(string);
+		
 	}
 }
