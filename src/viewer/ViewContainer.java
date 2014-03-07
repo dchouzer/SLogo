@@ -69,6 +69,9 @@ public class ViewContainer extends JFrame {
 		
 	}
 	
+	public void addCommandToList(String str){
+		tabs.get(tabbedPane.getSelectedIndex()).addCommandToList(str);
+	}
 }
 
 

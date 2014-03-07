@@ -13,6 +13,7 @@ import java.util.Random;
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -42,6 +43,7 @@ public class AggregateViewer extends JPanel {
 	private Dimension COMPUTATION_SIZE = new Dimension(400, 250);
 
 	private Turtle myTurtle;
+	private TopLeftView textView;
 
 
 	public AggregateViewer(Controller controller) {
@@ -54,10 +56,10 @@ public class AggregateViewer extends JPanel {
 	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
-		JTextArea myCommands = new JTextArea(300, 100);
+		JList myCommands = new JList();
 		JTextArea myOutput = new JTextArea(300, 100);
 		myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, this);
-		TopLeftView textView = new TopLeftView(myCommands, myOutput);
+		textView = new TopLeftView(myCommands, myOutput);
 		myTextInput = new TextInputArea(myController);
 		LeftView myUpperView = new LeftView(textView, myTextInput);
 		myPanel = new FullView(myUpperView, myGame);
@@ -87,5 +89,9 @@ public class AggregateViewer extends JPanel {
 	public void loadCommandsToText() {
 		myTextInput.load();
 		
+	}
+	
+	public void addCommandToList(String str){
+		textView.addCommandToList(str);
 	}
 }

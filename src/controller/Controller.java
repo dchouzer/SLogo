@@ -27,6 +27,8 @@ public class Controller {
 	
 	public void execute(String program) throws Exception {
 		(new Evaluator()).execute(myParser.parseProgram(program));
+		myCanvas.addCommandToList(program);
+		
 	}
 	
 	public static void move(double dist){
