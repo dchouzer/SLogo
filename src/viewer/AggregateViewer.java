@@ -52,10 +52,7 @@ public class AggregateViewer extends JPanel {
 		myController = controller;
 		myPanel = new JSplitPane();
 		myPanel.setLayout(new BorderLayout());
-		//setTitle("SLogo Turtle Simulator");
-	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
 		JList myCommands = new JList();
 		JTextArea myOutput = new JTextArea(300, 100);
 		myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, this);
