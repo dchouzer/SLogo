@@ -1,6 +1,8 @@
 package viewer;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,18 +17,26 @@ import javax.swing.*;
 
 public class TextInputArea extends JPanel {
 	JTextArea textArea;
+	JPanel myButtonPanel;
 	Controller myController;
 
 	public TextInputArea(Controller controller) {
+		myButtonPanel = new JPanel();
+		myButtonPanel.setPreferredSize(new Dimension(50,100));
 		myController = controller;
 		setPreferredSize(new Dimension(200, 100));
 		textArea = createTextArea();
 		add(textArea);
-		add(createButton("Execute"));
+		GridLayout gridLayout = new GridLayout(2,1);
+        setLayout(gridLayout);
+		myButtonPanel.add(createExecuteButton());
+		myButtonPanel.add(createRedoButton());
+		myButtonPanel.add(createUndoButton());
+		this.add(myButtonPanel);
 	}
 
-	public JButton createButton(String str) {
-		JButton button = new JButton(str);
+	public JButton createExecuteButton() {
+		JButton button = new JButton("Execute");
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -40,9 +50,41 @@ public class TextInputArea extends JPanel {
 		});
 		return button;
 	}
+	
+	public JButton createUndoButton() {
+		JButton button = new JButton("Undo");
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					myController.undo();
+				} catch (Exception k) {
+					// show error
+				}
+				textArea.setText("");
+			}
+		});
+		return button;
+	}
+	
+	public JButton createRedoButton() {
+		JButton button = new JButton("Redo");
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					myController.redo();
+				} catch (Exception k) {
+					// show error
+				}
+				textArea.setText("");
+			}
+		});
+		return button;
+	}
 
 	public JTextArea createTextArea() {
-		JTextArea text = new JTextArea(20, 25);
+		JTextArea text = new JTextArea(150, 100);
 		return text;
 	}
 
