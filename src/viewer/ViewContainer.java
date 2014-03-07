@@ -24,20 +24,32 @@ public class ViewContainer extends JFrame {
 		tabbedPane = new JTabbedPane();
 		myController = controller;
 		tabs = new HashMap<Integer, AggregateViewer>();
-		createTab("Slogo Workspace", "");
-		createTab("Slogo Workspace", "");
+		createTab();
 		setJMenuBar(new MenuBar(myController));
 		setSize(1200, 800);
 		pack();
 		setVisible(true);
 	}
 	
-	private void createTab(String str, String str2){
+	private void createTab(){
 		AggregateViewer panel = new AggregateViewer(myController);
-		tabbedPane.addTab(str, null, panel, str2);
+		tabbedPane.addTab("SLogo Workspace", null, panel, "SLogo Workspace");
 		tabs.put(tabIndex, panel);
 		tabIndex++;
 		add(tabbedPane);
+	}
+	
+	private void removeTab(Integer index){
+		tabbedPane.remove(index);
+		tabs.remove(index);
+		for(int i=0; i<=tabs.size(); i++){
+			if(i > index){
+				if(tabs.containsKey(i)){
+					AggregateViewer panel = tabs.get(i);
+					tabs.put(i-1, panel);
+				}
+			}
+		}
 	}
 	
 	public void setTurtleImage(String str){
