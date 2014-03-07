@@ -1,5 +1,8 @@
 package controller;
 
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
 import program.Evaluator;
 import program.Parser;
 import viewer.AggregateViewer;
@@ -11,16 +14,20 @@ import viewer.TurtleViewer;
  * @author jerrysmooth
  */
 
-public class Controller {
+public class Controller extends JPanel {
 	
 	//private Map<Integer, Turtle> myTurtles;
 	private Parser myParser;
 	private AggregateViewer myCanvas;
-	
+	private JTabbedPane myTabbedPane;
 	
 	public Controller () {
 		myParser = new Parser();
+//		AggregateViewer myCanvas1 = new AggregateViewer(this);
 		myCanvas = new AggregateViewer(this);
+//		myTabbedPane = new JTabbedPane();
+//		myTabbedPane.addTab("tab1", null, myCanvas1, "asdfs");
+//		myTabbedPane.addTab("tab 2", null, myCanvas, "asldkjf");
 	}
 	
 	public void execute(String program) throws Exception {
@@ -90,6 +97,10 @@ public class Controller {
 	
 	public static double getShape(){
 		return 0;
+	}
+	
+	public void setTurtleImage(String str){
+		myCanvas.setTurtleImage(str);
 	}
 
 }
