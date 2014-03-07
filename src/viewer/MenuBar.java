@@ -93,6 +93,19 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 		menu.add(addTabButton);
+		JMenuItem removeTabButton = new JMenuItem("Close Workspace");
+		removeTabButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e){
+				try{
+					myController.removeTab();
+				}
+				catch (Exception k){
+					
+				}
+			}
+		});
+		menu.add(removeTabButton);
 		return menu;
 	}
 	
