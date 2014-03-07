@@ -52,6 +52,7 @@ public class AggregateViewer extends JPanel {
 		myPanel.setLayout(new BorderLayout());
 		//setTitle("SLogo Turtle Simulator");
 	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		String str = "asdf";
 
 		
 		JTextArea myCommands = new JTextArea(300, 100);
