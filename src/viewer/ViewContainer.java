@@ -59,6 +59,11 @@ public class ViewContainer extends JFrame {
 	public void saveCommandsToFile(){
 		tabs.get(tabbedPane.getSelectedIndex()).saveCommandsToFile();
 	}
+
+	public void loadCommandsToText() {
+		tabs.get(tabbedPane.getSelectedIndex()).loadCommandsToText();
+		
+	}
 	
 }
 

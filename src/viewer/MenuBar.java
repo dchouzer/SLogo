@@ -45,6 +45,7 @@ public class MenuBar extends JMenuBar {
 
 	private JMenu createFileMenu(){
 		JMenu menu = new JMenu("File");
+		//Add save button
 		JButton saveButton = new JButton("Save");
 		saveButton.addActionListener(new ActionListener(){
 			@Override
@@ -58,6 +59,20 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 		menu.add(saveButton);
+		//Add load button
+		JButton loadButton = new JButton("Load");
+		loadButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e){
+				try{
+					myController.loadCommandsToText();
+				}
+				catch (Exception k) {
+					
+				}
+			}
+		});
+		menu.add(loadButton);
 		return menu;
 	}
 	
@@ -150,5 +165,13 @@ public class MenuBar extends JMenuBar {
 		turtles.put("Default Turtle", "turtle.gif");
 		turtles.put("Color Turtle", "colorTurtle.gif");
 
+	}
+	
+	private void createColorMap() {
+		
+	}
+	
+	private void createTurtleMap() {
+		
 	}
 }

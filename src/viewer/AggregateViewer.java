@@ -83,4 +83,9 @@ public class AggregateViewer extends JPanel {
 	public void saveCommandsToFile(){
 		myTextInput.save();
 	}
+
+	public void loadCommandsToText() {
+		myTextInput.load();
+		
+	}
 }

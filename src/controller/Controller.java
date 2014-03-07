@@ -80,7 +80,7 @@ public class Controller {
 	
 	public void setPenColor(String string){
 		System.out.println("set to "+ string);
-		}
+	}
 	
 	public static double getPenColor(){
 		return 0;
@@ -103,6 +103,11 @@ public class Controller {
 	public void saveCommandsToFile(){
 		System.out.println("made itrr");
 		myCanvas.saveCommandsToFile();
+	}
+
+	public void loadCommandsToText() {
+		myCanvas.loadCommandsToText();
+		
 	}
 
 }
