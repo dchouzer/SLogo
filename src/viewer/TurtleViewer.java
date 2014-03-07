@@ -18,12 +18,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
-import controller.Controller;
-
 import model.Turtle;
 
 public class TurtleViewer extends JPanel {
@@ -56,7 +52,7 @@ public class TurtleViewer extends JPanel {
 		setPreferredSize(size);
 		setBackground(DEFAULT_BACKGROUND_COLOR);
 		myTurtle = turtle;
-		TurtleImage = "colorTurtle.gif";
+		TurtleImage = "turtle.gif";
 		createImage();
 		myPoints = myTurtle.getPen().getHistory();
 		myLines = createLines();
