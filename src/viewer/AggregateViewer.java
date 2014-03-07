@@ -61,9 +61,7 @@ public class AggregateViewer extends JPanel {
 		TextInputArea myTextInput = new TextInputArea(myController);
 		LeftView myUpperView = new LeftView(textView, myTextInput);
 		myPanel = new FullView(myUpperView, myGame);
-		
-		// Set up the menuBar
-		
+
 		setSize(1200, 800);
 		add(myPanel);
 		setVisible(true);
