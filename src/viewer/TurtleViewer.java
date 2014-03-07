@@ -5,10 +5,7 @@ package viewer;
  */
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Canvas;
 import java.awt.Graphics;
-import java.awt.Stroke;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
@@ -21,7 +18,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -39,7 +35,6 @@ public class TurtleViewer extends JPanel {
 	private Dimension mySize;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.BLACK;
 	private static final Color DEFAULT_PEN_COLOR = Color.WHITE;
-	private static final String DEFAULT_RESOURCE_PACKAGE = "images/";
 	private List<Point2D> myPoints;
 	private List<Line2D.Double> myLines;
 	// Need to transform the location of the image also
