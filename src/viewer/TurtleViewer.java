@@ -68,7 +68,7 @@ public class TurtleViewer extends JPanel {
 		myXTranslation = (int) size.getWidth() / 2;
 		myYTranslation = (int) size.getHeight() / 2;
 		myAngle = (int) myTurtle.getAngle();
-
+		myPen.setColor(DEFAULT_PEN_COLOR);
 
 		setVisible(true);
 		update();
