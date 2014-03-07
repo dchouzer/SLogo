@@ -24,16 +24,12 @@ import model.Turtle;
 
 import controller.Controller;
 
-/*
- * @author Kat Krieger
- * @author David Chou
- */
 /**
  * 
  * @author katharinekrieger
- *
+ * @author David Chou
  */
-public class AggregateViewer extends JFrame {
+public class AggregateViewer extends JPanel {
 
 	private JFrame myFrame;
 	private JSplitPane myPanel;
@@ -53,8 +49,9 @@ public class AggregateViewer extends JFrame {
 		myTurtle = new Turtle(0, 0);
 		myController = controller;
 		myPanel = new JSplitPane();
-		setTitle("SLogo Turtle Simulator");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		myPanel.setLayout(new BorderLayout());
+		//setTitle("SLogo Turtle Simulator");
+	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
 		JTextArea myCommands = new JTextArea(300, 100);
@@ -65,13 +62,10 @@ public class AggregateViewer extends JFrame {
 		LeftView myUpperView = new LeftView(textView, myTextInput);
 		myPanel = new FullView(myUpperView, myGame);
 		
-		getContentPane().add(myPanel, BorderLayout.CENTER);
-		
 		// Set up the menuBar
-		setJMenuBar(new MenuBar(controller, myTurtle));
+		
 		setSize(1200, 800);
-		// Make the JPanel visible
-		pack();
+		add(myPanel);
 		setVisible(true);
 	}
 	

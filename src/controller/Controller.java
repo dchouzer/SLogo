@@ -8,6 +8,7 @@ import program.Parser;
 import viewer.AggregateViewer;
 import viewer.TopLeftView;
 import viewer.TurtleViewer;
+import viewer.ViewContainer;
 
 /**
  * @author Richard Cao
@@ -18,16 +19,13 @@ public class Controller extends JPanel {
 	
 	//private Map<Integer, Turtle> myTurtles;
 	private Parser myParser;
-	private AggregateViewer myCanvas;
+	private ViewContainer myCanvas;
 	private JTabbedPane myTabbedPane;
 	
 	public Controller () {
 		myParser = new Parser();
-//		AggregateViewer myCanvas1 = new AggregateViewer(this);
-		myCanvas = new AggregateViewer(this);
-//		myTabbedPane = new JTabbedPane();
-//		myTabbedPane.addTab("tab1", null, myCanvas1, "asdfs");
-//		myTabbedPane.addTab("tab 2", null, myCanvas, "asldkjf");
+		myCanvas = new ViewContainer(this);
+
 	}
 	
 	public void execute(String program) throws Exception {
@@ -100,7 +98,7 @@ public class Controller extends JPanel {
 	}
 	
 	public void setTurtleImage(String str){
-		myCanvas.setTurtleImage(str);
+		//myCanvas.setTurtleImage(str);
 	}
 
 }

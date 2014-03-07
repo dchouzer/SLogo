@@ -29,7 +29,7 @@ public class MenuBar extends JMenuBar {
 	HashMap<String,String> turtles;
 	Controller myController;
 	Turtle myTurtle;
-	public MenuBar(Controller controller, Turtle turtle) {
+	public MenuBar(Controller controller) {
 		myController = controller;
 		colors = new HashMap<String, String>();
 		turtles = new HashMap<String, String>();
