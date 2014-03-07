@@ -149,5 +149,9 @@ public class TurtleViewer extends JPanel {
 		revalidate();
 		repaint();
 	}
+	
+	public void changePenColor() {
+		
+	}
 
 }
