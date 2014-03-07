@@ -28,7 +28,11 @@ import controller.Controller;
  * @author Kat Krieger
  * @author David Chou
  */
-
+/**
+ * 
+ * @author katharinekrieger
+ *
+ */
 public class AggregateViewer extends JFrame {
 
 	private JFrame myFrame;
@@ -42,6 +46,7 @@ public class AggregateViewer extends JFrame {
 	private Dimension COMPUTATION_SIZE = new Dimension(400, 250);
 
 	private Turtle myTurtle;
+
 
 	public AggregateViewer(Controller controller) {
 		//Basic instantiation
