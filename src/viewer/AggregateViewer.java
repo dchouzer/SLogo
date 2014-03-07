@@ -21,6 +21,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 import model.Turtle;
+
 import controller.Controller;
 
 /**
@@ -28,7 +29,7 @@ import controller.Controller;
  * @author katharinekrieger
  * @author David Chou
  */
-public class AggregateViewer extends JFrame {
+public class AggregateViewer extends JPanel {
 
 	private JFrame myFrame;
 	private JSplitPane myPanel;
@@ -57,14 +58,9 @@ public class AggregateViewer extends JFrame {
 		JTextArea myOutput = new JTextArea(300, 100);
 		myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, this);
 		TopLeftView textView = new TopLeftView(myCommands, myOutput);
-		TextInputArea myTextInput = new TextInputArea(controller);
+		TextInputArea myTextInput = new TextInputArea(myController);
 		LeftView myUpperView = new LeftView(textView, myTextInput);
 		myPanel = new FullView(myUpperView, myGame);
-		
-		getContentPane().add(myPanel, BorderLayout.CENTER);
-		
-		// Set up the menuBar
-		setJMenuBar(new MenuBar(controller));
 
 		setSize(1200, 800);
 		add(myPanel);
@@ -78,7 +74,6 @@ public class AggregateViewer extends JFrame {
     }
 
 	public void setTurtleImage(String str){
-		System.out.println("made 1 it");
 		myGame.setImage(str);
 	}
 }

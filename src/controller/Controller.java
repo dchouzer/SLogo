@@ -5,6 +5,7 @@ import program.Parser;
 import viewer.AggregateViewer;
 import viewer.TopLeftView;
 import viewer.TurtleViewer;
+import viewer.ViewContainer;
 
 /**
  * @author Richard Cao
@@ -16,12 +17,12 @@ public class Controller {
 	
 	//private Map<Integer, Turtle> myTurtles;
 	private Parser myParser;
-	private AggregateViewer myCanvas;
+	private ViewContainer myCanvas;
 	
 	
 	public Controller () {
 		myParser = new Parser();
-		myCanvas = new AggregateViewer(this);
+		myCanvas = new ViewContainer(this);
 	}
 	
 	public void execute(String program) throws Exception {
