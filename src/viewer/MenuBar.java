@@ -15,6 +15,7 @@ import java.util.HashMap;
 
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JRadioButtonMenuItem;
@@ -28,7 +29,7 @@ public class MenuBar extends JMenuBar {
 	HashMap<String,String> colors;
 	HashMap<String,String> turtles;
 	Controller myController;
-
+	Turtle myTurtle;
 	public MenuBar(Controller controller) {
 		myController = controller;
 		colors = new HashMap<String, String>();
@@ -44,7 +45,19 @@ public class MenuBar extends JMenuBar {
 
 	private JMenu createFileMenu(){
 		JMenu menu = new JMenu("File");
-		
+		JButton saveButton = new JButton("Save");
+		saveButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e){
+				try{
+					myController.saveCommandsToFile();
+				}
+				catch (Exception k) {
+					
+				}
+			}
+		});
+		menu.add(saveButton);
 		return menu;
 	}
 	

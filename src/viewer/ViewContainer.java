@@ -44,6 +44,10 @@ public class ViewContainer extends JFrame {
 		tabs.get(tabbedPane.getSelectedIndex()).setTurtleImage(str);
 	}
 	
+	public void saveCommandsToFile(){
+		tabs.get(tabbedPane.getSelectedIndex()).saveCommandsToFile();
+	}
+	
 }
 
 

@@ -99,5 +99,10 @@ public class Controller {
 		myCanvas.setTurtleImage(str);
 		System.out.println("made itrr");
 	}
+	
+	public void saveCommandsToFile(){
+		System.out.println("made itrr");
+		myCanvas.saveCommandsToFile();
+	}
 
 }

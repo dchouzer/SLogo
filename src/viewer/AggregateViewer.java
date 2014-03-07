@@ -34,6 +34,7 @@ public class AggregateViewer extends JPanel {
 	private JSplitPane myPanel;
 	private TurtleViewer myGame;
 	private Controller myController;
+	private TextInputArea myTextInput;
 	private Dimension TOTAL_SIZE = new Dimension(1200, 800);
 	private Dimension TURTLE_SIZE = new Dimension(800, 600);
 	private Dimension TEXT_OUTPUT_SIZE = new Dimension(400, 250);
@@ -57,7 +58,7 @@ public class AggregateViewer extends JPanel {
 		JTextArea myOutput = new JTextArea(300, 100);
 		myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, this);
 		TopLeftView textView = new TopLeftView(myCommands, myOutput);
-		TextInputArea myTextInput = new TextInputArea(myController);
+		myTextInput = new TextInputArea(myController);
 		LeftView myUpperView = new LeftView(textView, myTextInput);
 		myPanel = new FullView(myUpperView, myGame);
 
@@ -77,5 +78,9 @@ public class AggregateViewer extends JPanel {
 		System.out.println("made it?");
 		myGame.setImage(str);
 		System.out.println("made it?");
+	}
+	
+	public void saveCommandsToFile(){
+		myTextInput.save();
 	}
 }
