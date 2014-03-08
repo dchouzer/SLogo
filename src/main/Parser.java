@@ -1,10 +1,15 @@
 package main;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 import java.util.Stack;
 
 import command.Command;
@@ -16,91 +21,15 @@ public class Parser {
 	String[] myStringArray;
 	List<Command> myCommandList;
 	int cursor;
-//	Set<String> zeroParamSet;
-//	Set<String> oneParamSet;
-//	Set<String> twoParamSet;
-	Map<String, Integer> numParamMap;
-	Map<String, String> commandMap;
+	private Map<String, Integer> numParamMap;
+	private Map<String, String> commandMap;
+	
+	private static final String COMMAND_PACKAGE = "command";
 	
 	public Parser() {
 		numParamMap = new HashMap<String, Integer>();
 		commandMap = new HashMap<String, String>();
-//		zeroParamSet = new HashSet<String>();
-//		oneParamSet = new HashSet<String>();
-//		twoParamSet = new HashSet<String>();
-		//TODO: fill in map of commands
-		//One parameter commands
-		numParamMap.put("fd", 1);
-		numParamMap.put("forward", 1);
-		numParamMap.put("back", 1);
-		numParamMap.put("bk", 1);
-		numParamMap.put("left", 1);
-		numParamMap.put("lt", 1);
-		numParamMap.put("right", 1);
-		numParamMap.put("rt", 1);
-		numParamMap.put("setheading", 1);
-		numParamMap.put("seth", 1);
-		numParamMap.put("random", 1);
-		numParamMap.put("sin", 1);
-		numParamMap.put("cos", 1);
-		numParamMap.put("tan", 1);
-		numParamMap.put("arctan", 1);
-		numParamMap.put("log", 1);
-		numParamMap.put("not", 1);
-		
-		//Zero parameter commands
-		numParamMap.put("pendown", 0);
-		numParamMap.put("pd", 0);
-		numParamMap.put("penup", 0);
-		numParamMap.put("pu", 0);
-		numParamMap.put("showturtle", 0);
-		numParamMap.put("st", 0);
-		numParamMap.put("hideturtle", 0);
-		numParamMap.put("ht", 0);
-		numParamMap.put("home", 0);
-		numParamMap.put("clearscreen", 0);
-		numParamMap.put("cs", 0);
-		numParamMap.put("xcor", 0);
-		numParamMap.put("ycor", 0);
-		numParamMap.put("heading", 0);
-		numParamMap.put("pendown?", 0);
-		numParamMap.put("pendownp", 0);
-		numParamMap.put("showing?", 0);
-		numParamMap.put("showingp", 0);
-		
-		//Two parameter commands
-		numParamMap.put("sum", 2);
-		numParamMap.put("+", 2);
-		numParamMap.put("difference", 2);
-		numParamMap.put("-", 2);
-		numParamMap.put("product", 2);
-		numParamMap.put("*", 2);
-		numParamMap.put("quotient", 2);
-		numParamMap.put("/", 2);
-		numParamMap.put("remainder", 2);
-		numParamMap.put("%", 2);
-		numParamMap.put("minus", 2);
-		numParamMap.put("~", 2);
-		numParamMap.put("pow", 2);
-		numParamMap.put("less?", 2);
-		numParamMap.put("lessp", 2);
-		numParamMap.put("greater?", 2);
-		numParamMap.put("greaterp", 2);
-		numParamMap.put("equal?", 2);
-		numParamMap.put("equalp", 2);
-		numParamMap.put("notequal?", 2);
-		numParamMap.put("notequalp", 2);
-		numParamMap.put("and", 2);
-		numParamMap.put("or", 2);
-		
-		String packname = "command";
-		
-		addCommandMapping(new String[] {"fd","forward"}, packname + ".ForwardCommand");
-		addCommandMapping(new String[] {"bk","back"}, packname + ".BackCommand");
-		addCommandMapping(new String[] {"lt","left"}, packname + ".RotateLeftCommand");
-		addCommandMapping(new String[] {"rt","right"}, packname + ".RotateRightCommand");
-		addCommandMapping(new String[] {"sum","+"},  packname +".SumCommand");
-		addCommandMapping(new String[] {"repeat"},  packname +".LoopCommand");
+		this.loadCommandMaps();
 	}
 	
 	
@@ -150,7 +79,7 @@ public class Parser {
 			return (Command) Class.forName(commandMap.get(commandString)).getConstructor(List.class).newInstance(commandList);
 		}
 		
-		if(isControlStructure(commandString)) {
+		if(numParams(commandString) == -1) {
 			Command c = recursiveParse(commandStrings);
 			cursor++;
 			List<Command> commandBlock = parse(getControlBlock(commandStrings));
@@ -188,18 +117,6 @@ public class Parser {
 		return numParamMap.get(commandString);
 	}
 	
-	private void addCommandMapping(String[] commandStrings, String value) {
-		for(String s : commandStrings) {
-			commandMap.put(s, value);
-		}
-	}
-	
-	private boolean isControlStructure(String commandString) {
-		if(commandString.equals("repeat"))
-			return true;
-		return false;
-	}
-	
 	private String[] getControlBlock(String[] commandStrings) {
 		Stack<String> stack = new Stack<String>();
 		int i = 0;
@@ -222,6 +139,24 @@ public class Parser {
 		String[] theArray = Arrays.copyOfRange(commandStrings, 0, i - 1);
 		
 		return theArray;
+	}
+	
+	private void loadCommandMaps() {
+		Properties properties = new Properties();
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		InputStream inputStream = loader.getResourceAsStream("resources/commands_nums.properties");
+		try {
+			properties.load(inputStream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		for(String commandString : properties.stringPropertyNames()) {
+			System.out.println(commandString + " " + properties.getProperty(commandString));
+			String commandName = COMMAND_PACKAGE + "." + properties.getProperty(commandString).split(",")[0].trim();
+			int numParams = Integer.parseInt(properties.getProperty(commandString).split(",")[1].trim());
+			commandMap.put(commandString, commandName);
+			numParamMap.put(commandString, numParams);
+		}
 	}
 	
 }
