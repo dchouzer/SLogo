@@ -31,15 +31,18 @@ import controller.Controller;
 public class MenuBar extends JMenuBar {
 	private HashMap<String,String> colors;
 	private HashMap<String,String> turtles;
+	private HashMap<String,String> backgrounds;
 	private Controller myController;
 	private Turtle myTurtle;
 	public static final String DEFAULT_TURTLES = "resources/turtles";
 	public static final String DEFAULT_COLORS = "resources/colors";
+	public static final String DEFAULT_BACKGROUNDS = "resources/backgrounds";
 			
 	public MenuBar(Controller controller) {
 		myController = controller;
 		colors = new HashMap<String, String>();
 		turtles = new HashMap<String, String>();
+		backgrounds = new HashMap<String, String>();
 		createMaps();
 		this.add(createFileMenu());
 		this.add(createTurtleImageMenu());
@@ -136,7 +139,27 @@ public class MenuBar extends JMenuBar {
 	
 	private JMenu createBackgroundMenu(){
 		JMenu menu = new JMenu("Choose Background Color");
-		
+		ButtonGroup group = new ButtonGroup();
+		JRadioButtonMenuItem rbMenuItem;
+		boolean defaultValue = true;
+		for(final String background : backgrounds.keySet()){
+			rbMenuItem = new JRadioButtonMenuItem(background);
+			rbMenuItem.setSelected(defaultValue);
+			rbMenuItem.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed (ActionEvent e){
+					try{
+						myController.setBackground(backgrounds.get(background));
+					}
+					catch (Exception k) {
+						
+					}
+				}
+			});
+			group.add(rbMenuItem);
+			menu.add(rbMenuItem);
+			defaultValue = false;
+		}
 		return menu;
 	}
 	
@@ -216,15 +239,9 @@ public class MenuBar extends JMenuBar {
 	}
 
 	private void createMaps(){
-//		colors.put("Yellow", "Yellow");
-//		colors.put("Red", "Red");
-//		colors.put("Blue", "Blue");
-//		colors.put("Black", "Black");
-//		turtles.put("Default Turtle", "turtle.gif");
-//		turtles.put("Color Turtle", "colorTurtle.gif");
 		colors = createColorMap();
 		turtles = createTurtleMap();
-
+		backgrounds = createBackgroundMap();
 	}
 	
 	private HashMap<String, String> createColorMap() {
@@ -258,5 +275,23 @@ public class MenuBar extends JMenuBar {
 			System.out.println(s + ": " + turtles.get(s));
 		}
 		return turtles;
+	}
+	
+	private HashMap<String, String> createBackgroundMap() {
+		HashMap<String, String> backgrounds = new HashMap<String, String>();
+		ResourceBundle resources = ResourceBundle.getBundle(DEFAULT_BACKGROUNDS);
+		Enumeration <String> iter = resources.getKeys();
+		while (iter.hasMoreElements()) {
+			try {
+				String background = iter.nextElement();
+				backgrounds.put(background, resources.getString(background));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		for (String s : backgrounds.keySet()) {
+			System.out.println(s + ": " + backgrounds.get(s));
+		}
+		return backgrounds;
 	}
 }

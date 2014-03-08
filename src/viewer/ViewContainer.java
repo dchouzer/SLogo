@@ -105,6 +105,11 @@ public class ViewContainer extends JFrame {
 		myTurtleState.loadTurtleState();
 	}
 
+	public void setBackground(String string) {
+		tabs.get(tabbedPane.getSelectedIndex()).setBackground(string);
+		
+	}
+
 
 }
 

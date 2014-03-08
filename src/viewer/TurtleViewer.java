@@ -31,9 +31,10 @@ public class TurtleViewer extends JPanel {
 
 	private Turtle myTurtle;
 	private Dimension mySize;
-	private static final Color DEFAULT_BACKGROUND_COLOR = Color.BLACK;
+	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 	private static final Color DEFAULT_PEN_COLOR = Color.WHITE;
 	private static final String DEFAULT_COLORS = "resources/colors";
+	private static final String DEFAULT_BACKGROUNDS = "resources/backgrounds";
 	private List<Point2D> myPoints;
 	private List<Line2D.Double> myLines;
 	private int myXTranslation;
@@ -46,6 +47,7 @@ public class TurtleViewer extends JPanel {
 	private int myImageHeight;
 	private String TurtleImage;
 	private HashMap<String, Color> myPenColors;
+	private HashMap<String, Color> myBackgroundColors;
 	private Color myPenColor;
 
 	// Need to determine how to drawLines
@@ -55,6 +57,7 @@ public class TurtleViewer extends JPanel {
 		mySize = size;
 		setPreferredSize(size);
 		setBackground(DEFAULT_BACKGROUND_COLOR);
+		myBackgroundColors = createBackgroundMap();
 		myTurtle = turtle;
 		TurtleImage = "turtle.gif";
 		createImage();
@@ -171,6 +174,23 @@ public class TurtleViewer extends JPanel {
 		}
 		return colors;
 	}
+	
+	public HashMap<String, Color> createBackgroundMap() {
+		HashMap<String, Color> colors = new HashMap<String, Color>();
+		ResourceBundle resources = ResourceBundle.getBundle(DEFAULT_BACKGROUNDS);
+		Enumeration<String> iter = resources.getKeys();
+		while (iter.hasMoreElements()) {
+			try {
+				String key = iter.nextElement();
+				java.lang.reflect.Field field = Class.forName("java.awt.Color")
+						.getField(resources.getString(key).toLowerCase());
+				colors.put(key, (Color) field.get(null));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return colors;
+	}
 
 	public void setPenColor(String s) {
 		myPen.setColor(myPenColors.get(s));
@@ -189,5 +209,9 @@ public class TurtleViewer extends JPanel {
 		myPen.setColor(color);
 		myPenColor = color;
 		
+	}
+	
+	public void setBackground(String s) {
+		setBackground(myBackgroundColors.get(s));
 	}
 }

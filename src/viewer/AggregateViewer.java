@@ -111,4 +111,8 @@ public class AggregateViewer extends JPanel {
 	public void setPenColor(Color color) {
 		myGame.setPenColor(color);	
 	}
+
+	public void setBackground(String string) {
+		myGame.setBackground(string);	
+	}
 }

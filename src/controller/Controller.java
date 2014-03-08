@@ -143,4 +143,9 @@ public class Controller {
 		myCanvas.setPenColor(color);
 		
 	}
+
+	public void setBackground(String string) {
+		myCanvas.setBackground(string);
+		
+	}
 }
