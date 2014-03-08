@@ -4,12 +4,11 @@ import javax.swing.*;
 
 public class FullView extends JSplitPane{
 
-	public FullView(TextInputArea textInput, UpperView upper){
+	public FullView(LeftView leftSide, TurtleViewer turtleViewer){
 
-		setOrientation(VERTICAL_SPLIT);
-		setTopComponent(upper);
-		setBottomComponent(textInput);
-		
+		setOrientation(HORIZONTAL_SPLIT);
+		setLeftComponent(leftSide);
+		setRightComponent(turtleViewer);
 	}
 	
 

@@ -64,5 +64,10 @@ public class Pen {
 	public List<Point2D> getHistory() {
 		return pointHistory;
 	}
+	
+	// TO DO!!!!
+	public void setColor(String color){
+		System.out.println("set the color to " + color);
+	}
 }
 

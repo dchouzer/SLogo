@@ -1,4 +1,4 @@
-package program;
+package main;
 
 public class ErrorChecker {
 	

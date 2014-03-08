@@ -1,30 +1,38 @@
 package controller;
 
-import program.Evaluator;
-import program.Parser;
-import viewer.TextViewerArea;
+import java.awt.Color;
+
+import main.Evaluator;
+import main.Parser;
+
+import viewer.AggregateViewer;
+import viewer.TopLeftView;
 import viewer.TurtleViewer;
+import viewer.ViewContainer;
 
 /**
  * @author Richard Cao
  * @author jerrysmooth
+ * @author katharinekrieger
+ * @author David Chou
  */
 
 public class Controller {
 	
 	//private Map<Integer, Turtle> myTurtles;
 	private Parser myParser;
-	private TextViewerArea myTextViewer;
-	private TurtleViewer myTurtleViewer;
+	private ViewContainer myCanvas;
 	
-	public Controller (Parser parser, TextViewerArea textViewer, TurtleViewer turtleViewer) {
-		myParser = parser;
-		myTextViewer = textViewer;
-		myTurtleViewer = turtleViewer;
+	
+	public Controller () {
+		myParser = new Parser();
+		myCanvas = new ViewContainer(this);
 	}
 	
 	public void execute(String program) throws Exception {
 		(new Evaluator()).execute(myParser.parseProgram(program));
+		myCanvas.addCommandToList(program);
+		
 	}
 	
 	public static void move(double dist){
@@ -75,5 +83,71 @@ public class Controller {
 	public static double getTurtleVisibility(){
 		return 0.0;
 	}
+	
+	public void setPenColor(String string){
+		myCanvas.setPenColor(string);
+	}
+	
+	public Color getPenColor(){
+		return myCanvas.getPenColor();
+	}
+	
+	public static double setShape(double index){
+		return index;
+	}
+	
+	public static double getShape(){
+		return 0;
+	}
+	public String getCurrentTurtleImage(){
+		return myCanvas.getCurrentTurtleImage();
+	}
+	
+	public void setTurtleImage(String str){
+		myCanvas.setTurtleImage(str);
+	}
+	
+	public void saveCommandsToFile(){
+		myCanvas.saveCommandsToFile();
+	}
 
+	public void loadCommandsToText() {
+		myCanvas.loadCommandsToText();
+		
+	}
+	
+	public void addTab(){
+		myCanvas.createTab();
+	}
+	public void removeTab(){
+		myCanvas.removeTab();
+	}
+	
+	public void saveWorkspace(){
+		myCanvas.saveWorkspace();
+	}
+	
+	public void loadWorkspace(){
+		myCanvas.loadWorkspace();
+	}
+	
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void redo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPenColor(Color color) {
+		myCanvas.setPenColor(color);
+		
+	}
+
+	public void setBackground(String string) {
+		myCanvas.setBackground(string);
+		
+	}
 }

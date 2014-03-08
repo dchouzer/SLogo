@@ -1,99 +1,108 @@
 package viewer;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.util.Random;
 
-import javax.swing.AbstractAction;
-import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
-public class AggregateViewer extends JFrame {
+import model.Turtle;
+import model.TurtleState;
+import controller.Controller;
+
+/**
+ * 
+ * @author katharinekrieger
+ * @author David Chou
+ */
+public class AggregateViewer extends JPanel {
 
 
+	private JFrame myFrame;
+	private JSplitPane myPanel;
+	private TurtleViewer myGame;
+	private Controller myController;
+	private TextInputArea myTextInput;
+	private Dimension TOTAL_SIZE = new Dimension(1200, 800);
+	private Dimension TURTLE_SIZE = new Dimension(800, 600);
+	private Dimension TEXT_OUTPUT_SIZE = new Dimension(400, 250);
+	private Dimension PROGRAM_INPUT_SIZE = new Dimension(800, 300);
+	private Dimension COMPUTATION_SIZE = new Dimension(400, 250);
 
-	public AggregateViewer()
-	{
-		setTitle("sLogo");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JTextArea myCommands = new JTextArea(20,20);
-		JTextArea myOutput = new JTextArea(20,20);
-		TurtleViewer myGame = new TurtleViewer(); 
-		TextViewerArea textView = new TextViewerArea(myCommands, myOutput);
-		UpperView myUpperView = new UpperView(textView, myGame);
-		TextInputArea myTextInput = new TextInputArea();
-		FullView fullView = new FullView(myTextInput, myUpperView);
-		getContentPane().add(fullView, BorderLayout.CENTER);
-		setJMenuBar(createMenuBar());
-		pack();
+	private TurtleState myTurtleState;
+	private Turtle myTurtle;
+	private TopLeftView textView;
+
+
+	public AggregateViewer(Controller controller) {
+		//Basic instantiation
+		myTurtle = new Turtle(0, 0);
+		myController = controller;
+		myPanel = new JSplitPane();
+		myPanel.setLayout(new BorderLayout());
+		JList myCommands = new JList();
+		JTextArea myOutput = new JTextArea(300, 100);
+		myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, this);
+		textView = new TopLeftView(myCommands, myOutput);
+		myTextInput = new TextInputArea(myController);
+		LeftView myUpperView = new LeftView(textView, myTextInput);
+		myPanel = new FullView(myUpperView, myGame);
+
+		setSize(1200, 800);
+		add(myPanel);
 		setVisible(true);
 	}
-
-
-	private JMenuBar createMenuBar() {
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.add(createColorMenu());
-		menuBar.add(createHelpMenu());
-		return menuBar;
+	
+	public void createTurtleState(TurtleState st){
+		myTurtleState = st;
 	}
-	private JMenu createColorMenu(){
-		JMenu menu = new JMenu("Choose Pen Color");
-		menu.setMnemonic(KeyEvent.VK_A);
-		ButtonGroup group = new ButtonGroup();
-		JRadioButtonMenuItem rbMenuItem;
-		rbMenuItem = new JRadioButtonMenuItem("Yellow");
-		rbMenuItem.setSelected(true);
-		rbMenuItem.setMnemonic(KeyEvent.VK_Y);
-		group.add(rbMenuItem);
-		menu.add(rbMenuItem);
-		rbMenuItem = new JRadioButtonMenuItem("Black");
-		rbMenuItem.setMnemonic(KeyEvent.VK_K);
-		group.add(rbMenuItem);
-		menu.add(rbMenuItem);
-		rbMenuItem = new JRadioButtonMenuItem("Blue");
-		rbMenuItem.setMnemonic(KeyEvent.VK_B);
-		group.add(rbMenuItem);
-		menu.add(rbMenuItem);
-		rbMenuItem = new JRadioButtonMenuItem("Red");
-		rbMenuItem.setMnemonic(KeyEvent.VK_R);
-		group.add(rbMenuItem);
-		menu.add(rbMenuItem);
-		return menu;
+	
+	public void update () {
+        Random rand = new Random();
+        myPanel.setSize(TOTAL_SIZE);
+        validate();
+        repaint();
+    }
+
+	public void setTurtleImage(String str){
+		myGame.setImage(str);
+	}
+	
+	public void saveCommandsToFile(){
+		myTextInput.save();
 	}
 
-	private JMenu createHelpMenu(){
-		JMenu menu = new JMenu("Help");
-		menu.add(new AbstractAction("helpcommand") {
-			public void actionPerformed (ActionEvent e) {
-				String helpSite = "http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php";
-				try {
-					URI location = new java.net.URI(helpSite);
-					try {
-						java.awt.Desktop.getDesktop().browse(location);
-					} 
-					catch (IOException e1) {
-						e1.printStackTrace();
-					}
-				} catch (URISyntaxException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-			}}); 
-
-		return menu;
+	public void loadCommandsToText() {
+		myTextInput.load();
+	}
+	
+	public void addCommandToList(String str){
+		textView.addCommandToList(str);
+	}
+	
+	public void setPenColor(String string) {
+		myGame.setPenColor(string);
+		
+	}
+	
+	public String getCurrentTurtleImage(){
+		return myGame.getCurrentTurtleImage();
+	}
+	
+	public Color getPenColor(){
+		return myGame.getPenColor();
 	}
 
+	public void setPenColor(Color color) {
+		myGame.setPenColor(color);	
+	}
 
-
-	public static void main(String[] args) {
-		AggregateViewer view = new AggregateViewer();
+	public void setBackground(String string) {
+		myGame.setBackground(string);	
 	}
 }

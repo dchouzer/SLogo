@@ -1,4 +1,4 @@
-package program;
+package main;
 
 /*
  * @author David Chou
