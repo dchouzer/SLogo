@@ -13,6 +13,7 @@ import viewer.ViewContainer;
  * @author Richard Cao
  * @author jerrysmooth
  * @author katharinekrieger
+ * @author David Chou
  */
 
 public class Controller {
