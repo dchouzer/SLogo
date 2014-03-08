@@ -33,8 +33,6 @@ public class TurtleViewer extends JPanel {
 	private Dimension mySize;
 	private static final Color DEFAULT_BACKGROUND_COLOR = Color.WHITE;
 	private static final Color DEFAULT_PEN_COLOR = Color.WHITE;
-	private static final String DEFAULT_COLORS = "resources/colors";
-	private static final String DEFAULT_BACKGROUNDS = "resources/backgrounds";
 	private List<Point2D> myPoints;
 	private List<Line2D.Double> myLines;
 	private int myXTranslation;
@@ -46,8 +44,6 @@ public class TurtleViewer extends JPanel {
 	private int myImageWidth;
 	private int myImageHeight;
 	private String TurtleImage;
-	private HashMap<String, Color> myPenColors;
-	private HashMap<String, Color> myBackgroundColors;
 	private Color myPenColor;
 
 	// Need to determine how to drawLines
@@ -57,7 +53,6 @@ public class TurtleViewer extends JPanel {
 		mySize = size;
 		setPreferredSize(size);
 		setBackground(DEFAULT_BACKGROUND_COLOR);
-		myBackgroundColors = createBackgroundMap();
 		myTurtle = turtle;
 		TurtleImage = "turtle.gif";
 		createImage();
@@ -67,7 +62,6 @@ public class TurtleViewer extends JPanel {
 		myYTranslation = (int) size.getHeight() / 2;
 		myAngle = (int) myTurtle.getAngle();
 		myPen.setColor(DEFAULT_PEN_COLOR);
-		myPenColors = createPenColorMap();
 		myPenColor = DEFAULT_PEN_COLOR;
 		setVisible(true);
 		update();
@@ -158,60 +152,37 @@ public class TurtleViewer extends JPanel {
 		repaint();
 	}
 
-	public HashMap<String, Color> createPenColorMap() {
-		HashMap<String, Color> colors = new HashMap<String, Color>();
-		ResourceBundle resources = ResourceBundle.getBundle(DEFAULT_COLORS);
-		Enumeration<String> iter = resources.getKeys();
-		while (iter.hasMoreElements()) {
-			try {
-				String key = iter.nextElement();
-				java.lang.reflect.Field field = Class.forName("java.awt.Color")
-						.getField(resources.getString(key).toLowerCase());
-				colors.put(key, (Color) field.get(null));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return colors;
-	}
-	
-	public HashMap<String, Color> createBackgroundMap() {
-		HashMap<String, Color> colors = new HashMap<String, Color>();
-		ResourceBundle resources = ResourceBundle.getBundle(DEFAULT_BACKGROUNDS);
-		Enumeration<String> iter = resources.getKeys();
-		while (iter.hasMoreElements()) {
-			try {
-				String key = iter.nextElement();
-				java.lang.reflect.Field field = Class.forName("java.awt.Color")
-						.getField(resources.getString(key).toLowerCase());
-				colors.put(key, (Color) field.get(null));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return colors;
-	}
-
 	public void setPenColor(String s) {
-		myPen.setColor(myPenColors.get(s));
-		myPenColor = (myPenColors.get(s)); 
+		try {
+			java.lang.reflect.Field field = Class.forName("java.awt.Color")
+					.getField(s.toLowerCase());
+			myPen.setColor((Color) field.get(null));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	public String getCurrentTurtleImage(){
+	public String getCurrentTurtleImage() {
 		return TurtleImage;
 	}
-	
-	public Color getPenColor(){
+
+	public Color getPenColor() {
 		return myPenColor;
 	}
 
 	public void setPenColor(Color color) {
 		myPen.setColor(color);
 		myPenColor = color;
-		
+
 	}
-	
+
 	public void setBackground(String s) {
-		setBackground(myBackgroundColors.get(s));
+		try {
+			java.lang.reflect.Field field = Class.forName("java.awt.Color")
+					.getField(s.toLowerCase());
+			setBackground(((Color) field.get(null)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

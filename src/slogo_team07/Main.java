@@ -1,6 +1,6 @@
 package slogo_team07;
 
-import program.Parser;
+import main.Parser;
 import viewer.TopLeftView;
 import viewer.TurtleViewer;
 import controller.Controller;

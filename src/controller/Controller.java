@@ -2,8 +2,9 @@ package controller;
 
 import java.awt.Color;
 
-import program.Evaluator;
-import program.Parser;
+import main.Evaluator;
+import main.Parser;
+
 import viewer.AggregateViewer;
 import viewer.TopLeftView;
 import viewer.TurtleViewer;

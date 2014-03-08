@@ -101,18 +101,18 @@ VisualOutput (extends Jgame)
 
 API:
 
-void runProgram(String program)
-	Sends all text to the model, and executes the program.
+void runProgram(String main)
+	Sends all text to the model, and executes the main.
 
 void resetScreen()
 	Erases current drawing and resets the turtle to its default position/orientation in the display area.
 
 void restoreProgram(int index)
-	Restores a program from the saved input history into the console. 
-	An index of zero restores the most recent program, and earlier items have a greater index.
+	Restores a main from the saved input history into the console. 
+	An index of zero restores the most recent main, and earlier items have a greater index.
 
 void stop()
-	Aborts execution of the drawing and current program. Does not reset the state of the turtle.
+	Aborts execution of the drawing and current main. Does not reset the state of the turtle.
 	If any user programs are run again, the turtle starts from its current position.
 	
 void initiate()
@@ -146,7 +146,7 @@ repeat 10 [pd fd 4 pu fd 4] - the turtle will have 10 iterations;
         the pen goes up
         the turtle goes forward 4 steps
         
-The program will need to be able to parse the following:
+The main will need to be able to parse the following:
     fd
     pu, pd
     rt
