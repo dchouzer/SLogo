@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.Color;
+
 import program.Evaluator;
 import program.Parser;
 import viewer.AggregateViewer;
@@ -84,8 +86,8 @@ public class Controller {
 		myCanvas.setPenColor(string);
 	}
 	
-	public static double getPenColor(){
-		return 0;
+	public Color getPenColor(){
+		return myCanvas.getPenColor();
 	}
 	
 	public static double setShape(double index){
@@ -95,15 +97,15 @@ public class Controller {
 	public static double getShape(){
 		return 0;
 	}
+	public String getCurrentTurtleImage(){
+		return myCanvas.getCurrentTurtleImage();
+	}
 	
 	public void setTurtleImage(String str){
-		System.out.println("made itrr");
 		myCanvas.setTurtleImage(str);
-		System.out.println("made itrr");
 	}
 	
 	public void saveCommandsToFile(){
-		System.out.println("made itrr");
 		myCanvas.saveCommandsToFile();
 	}
 
@@ -118,7 +120,15 @@ public class Controller {
 	public void removeTab(){
 		myCanvas.removeTab();
 	}
-
+	
+	public void saveWorkspace(){
+		myCanvas.saveWorkspace();
+	}
+	
+	public void loadWorkspace(){
+		myCanvas.loadWorkspace();
+	}
+	
 	public void undo() {
 		// TODO Auto-generated method stub
 		
@@ -126,6 +136,11 @@ public class Controller {
 
 	public void redo() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPenColor(Color color) {
+		myCanvas.setPenColor(color);
 		
 	}
 }

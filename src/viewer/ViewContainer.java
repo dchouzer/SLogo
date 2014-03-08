@@ -1,6 +1,7 @@
 package viewer;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.HashMap;
 
@@ -10,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import model.TurtleState;
 import controller.Controller;
 
 public class ViewContainer extends JFrame {
@@ -19,12 +21,15 @@ public class ViewContainer extends JFrame {
 	private AggregateViewer panel2;
 	private HashMap<Integer, AggregateViewer> tabs;
 	private int tabIndex;
-	public ViewContainer(Controller controller){
+	private TurtleState myTurtleState;
+	
+	public ViewContainer(Controller controller){	
 		tabIndex = 0;
 		tabbedPane = new JTabbedPane();
 		myController = controller;
 		tabs = new HashMap<Integer, AggregateViewer>();
 		createTab();
+		myTurtleState = new TurtleState(myController);
 		setJMenuBar(new MenuBar(myController));
 		setSize(1200, 800);
 		pack();
@@ -57,7 +62,6 @@ public class ViewContainer extends JFrame {
 	
 	public void setTurtleImage(String str){
 		tabs.get(tabbedPane.getSelectedIndex()).setTurtleImage(str);
-		System.out.println(tabbedPane.getSelectedIndex());
 	}
 	
 	public void saveCommandsToFile(){
@@ -77,6 +81,31 @@ public class ViewContainer extends JFrame {
 	public void addCommandToList(String str){
 		tabs.get(tabbedPane.getSelectedIndex()).addCommandToList(str);
 	}
+	
+	public String getCurrentTurtleImage(){
+		String str = tabs.get(tabbedPane.getSelectedIndex()).getCurrentTurtleImage();
+		return str;
+	}
+	
+	public Color getPenColor(){
+		Color str = tabs.get(tabbedPane.getSelectedIndex()).getPenColor();
+		return str;
+	}
+	
+	public void setPenColor(Color color) {
+		tabs.get(tabbedPane.getSelectedIndex()).setPenColor(color);
+		
+	}
+	
+	public void saveWorkspace(){
+		myTurtleState.saveTurtleState();
+	}
+
+	public void loadWorkspace(){
+		myTurtleState.loadTurtleState();
+	}
+
+
 }
 
 

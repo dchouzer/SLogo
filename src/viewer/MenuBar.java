@@ -105,6 +105,32 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 		menu.add(removeTabButton);
+		JMenuItem saveDefaultWorkspace = new JMenuItem("Save Workspace Preferences");
+		saveDefaultWorkspace.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e){
+				try{
+					myController.saveWorkspace();
+				}
+				catch (Exception k){
+					
+				}
+			}
+		});
+		menu.add(saveDefaultWorkspace);
+		JMenuItem loadDefaultWorkspace = new JMenuItem("Load Workspace Preferences");
+		loadDefaultWorkspace.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e){
+				try{
+					myController.loadWorkspace();
+				}
+				catch (Exception k){
+					
+				}
+			}
+		});
+		menu.add(loadDefaultWorkspace);
 		return menu;
 	}
 	

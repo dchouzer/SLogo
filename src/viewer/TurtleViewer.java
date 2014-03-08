@@ -2,6 +2,7 @@ package viewer;
 
 /*
  * @author David Chou
+ * @author katharinekrieger
  */
 
 import java.awt.Color;
@@ -45,6 +46,7 @@ public class TurtleViewer extends JPanel {
 	private int myImageHeight;
 	private String TurtleImage;
 	private HashMap<String, Color> myPenColors;
+	private Color myPenColor;
 
 	// Need to determine how to drawLines
 	public TurtleViewer(Turtle turtle, Dimension size, AggregateViewer canvas) {
@@ -63,6 +65,7 @@ public class TurtleViewer extends JPanel {
 		myAngle = (int) myTurtle.getAngle();
 		myPen.setColor(DEFAULT_PEN_COLOR);
 		myPenColors = createPenColorMap();
+		myPenColor = DEFAULT_PEN_COLOR;
 		setVisible(true);
 		update();
 	}
@@ -147,7 +150,6 @@ public class TurtleViewer extends JPanel {
 
 	public void setImage(String str) {
 		TurtleImage = str;
-		System.out.println("made it");
 		createImage();
 		revalidate();
 		repaint();
@@ -172,6 +174,20 @@ public class TurtleViewer extends JPanel {
 
 	public void setPenColor(String s) {
 		myPen.setColor(myPenColors.get(s));
+		myPenColor = (myPenColors.get(s)); 
 	}
 
+	public String getCurrentTurtleImage(){
+		return TurtleImage;
+	}
+	
+	public Color getPenColor(){
+		return myPenColor;
+	}
+
+	public void setPenColor(Color color) {
+		myPen.setColor(color);
+		myPenColor = color;
+		
+	}
 }

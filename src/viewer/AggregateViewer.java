@@ -1,6 +1,7 @@
 package viewer;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -22,6 +23,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 
 import model.Turtle;
+import model.TurtleState;
 import controller.Controller;
 
 /**
@@ -42,6 +44,7 @@ public class AggregateViewer extends JPanel {
 	private Dimension PROGRAM_INPUT_SIZE = new Dimension(800, 300);
 	private Dimension COMPUTATION_SIZE = new Dimension(400, 250);
 
+	private TurtleState myTurtleState;
 	private Turtle myTurtle;
 	private TopLeftView textView;
 
@@ -52,7 +55,6 @@ public class AggregateViewer extends JPanel {
 		myController = controller;
 		myPanel = new JSplitPane();
 		myPanel.setLayout(new BorderLayout());
-
 		JList myCommands = new JList();
 		JTextArea myOutput = new JTextArea(300, 100);
 		myGame = new TurtleViewer(myTurtle, TURTLE_SIZE, this);
@@ -66,6 +68,10 @@ public class AggregateViewer extends JPanel {
 		setVisible(true);
 	}
 	
+	public void createTurtleState(TurtleState st){
+		myTurtleState = st;
+	}
+	
 	public void update () {
         Random rand = new Random();
         myPanel.setSize(TOTAL_SIZE);
@@ -74,9 +80,7 @@ public class AggregateViewer extends JPanel {
     }
 
 	public void setTurtleImage(String str){
-		System.out.println("made it?");
 		myGame.setImage(str);
-		System.out.println("made it?");
 	}
 	
 	public void saveCommandsToFile(){
@@ -85,16 +89,26 @@ public class AggregateViewer extends JPanel {
 
 	public void loadCommandsToText() {
 		myTextInput.load();
-		
 	}
 	
 	public void addCommandToList(String str){
 		textView.addCommandToList(str);
-
 	}
 	
 	public void setPenColor(String string) {
 		myGame.setPenColor(string);
 		
+	}
+	
+	public String getCurrentTurtleImage(){
+		return myGame.getCurrentTurtleImage();
+	}
+	
+	public Color getPenColor(){
+		return myGame.getPenColor();
+	}
+
+	public void setPenColor(Color color) {
+		myGame.setPenColor(color);	
 	}
 }
