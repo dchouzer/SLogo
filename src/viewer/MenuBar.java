@@ -49,7 +49,6 @@ public class MenuBar extends JMenuBar {
 		this.add(createBackgroundMenu());
 		this.add(createColorMenu());
 		this.add(createHelpMenu());
-
 	}
 
 	private JMenu createFileMenu(){
