@@ -5,7 +5,7 @@ interface Command
     
     Description:
     The Command interface defines a contract for all commands with one method to execute
-    the command. The Command class is implemented by three abstract classes, ZeroParamCommand, OneParamCommand, and MoreThanOneParamCommand, and NumberCommand. All the Slogo commands then extended their respective abstract classes based on the number of parameters that they are supposed to accept.  
+    the command. The Command interface is implemented by three abstract classes, ZeroParamCommand, OneParamCommand, and MoreThanOneParamCommand, and NumberCommand. All the Slogo commands then extended their respective abstract classes based on the number of parameters that they are supposed to accept.  
  Once the model has generated a collection of Command objects, they will be passed to the command 
     evaluator, which will run through all commands in the list. Some commands, such as
     those representing loops and defined methods, will hold a reference to a list of
