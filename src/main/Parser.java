@@ -5,11 +5,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.Stack;
 
 import command.Command;
@@ -41,14 +39,6 @@ public class Parser {
 		myCommandList = parse(myStringArray);
 		return myCommandList;
 	}
-	
-	/*This method should run through the  array
-	 * to check what kind of command each box is -
-	 * after it examines the type of command that
-	 * is there, it should look at a number of corresponding
-	 * values based on that type of command
-	 */
-	//Can use this to run through the string and store
 	
 	private Command recursiveParse(String[] commandStrings) throws Exception {	
 		cursor++;
@@ -103,6 +93,7 @@ public class Parser {
 	
 	private boolean isNumber(String s) {
 		try {
+			@SuppressWarnings("unused")
 			double d = Double.parseDouble(s);
 		} catch (NumberFormatException e) {
 			return false;
@@ -112,7 +103,7 @@ public class Parser {
 	
 	private int numParams(String commandString) {
 		if(!numParamMap.containsKey(commandString)) {
-			return -1;
+			return -10;
 		}
 		return numParamMap.get(commandString);
 	}
@@ -151,7 +142,6 @@ public class Parser {
 			e.printStackTrace();
 		}
 		for(String commandString : properties.stringPropertyNames()) {
-			System.out.println(commandString + " " + properties.getProperty(commandString));
 			String commandName = COMMAND_PACKAGE + "." + properties.getProperty(commandString).split(",")[0].trim();
 			int numParams = Integer.parseInt(properties.getProperty(commandString).split(",")[1].trim());
 			commandMap.put(commandString, commandName);
